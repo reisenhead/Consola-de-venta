@@ -1,7 +1,119 @@
 package `mercadolibre eq3`
 
-import java.util.*
 
+
+/*fun main(){
+    val user = "Bedu"
+    val password = "toor"
+
+    println("")
+    println("Bienvenid@ a Mercado Libre")
+    menu()
+
+}
+
+fun verificarUsuario(user: String, password: String): Boolean {
+    var mensaje:Boolean = false
+
+    if(user.contentEquals("Bedu") && password.contentEquals("toor")){
+        mensaje = true
+    }
+
+    return mensaje;
+}*/
+/*
+fun menu(){
+    println("****************MENU***************")
+    println("* Por favor selecciona una opcion:*")
+    println("*  1- Iniciar sesion:             *")
+    println("*  2- Entrar como invitado:       *")
+    println("*  3- Registrarse:                *")
+    println("*  4- Salir:                      *")
+    println("***********************************")
+
+    println("\nIngresa un digito:")
+    val opcion = readLine()!!
+    when (Integer.parseInt(opcion)) {
+        1 -> {
+            println("Por favor ingresa tu usuario:")
+            val usuarioActual = readLine()!!
+
+            println("Por favor ingresa tu contrasenia:")
+            val passwordActual = readLine()!!
+
+            if(verificarUsuario(usuarioActual,passwordActual)){
+                println("BIENVENID@ $usuarioActual\n")
+            }else{
+                println("Usuario o Contrasenia incorrecta\n")
+            }
+        }
+        2 -> print("BIENVENID@")
+        3 -> print("EN MANTENIMIENTO")
+        4 -> print("GRACIAS; REGRESA PRONTO")
+    }
+
+}
+
+fun main(){
+    val user = "Bedu"
+    val password = "toor"
+
+    println("")
+    println("Bienvenid@ a Mercado Libre")
+    menu()
+
+}
+
+fun verificarUsuario(user: String, password: String): Boolean {
+    var mensaje:Boolean = false
+
+    if(user.contentEquals("Bedu") && password.contentEquals("toor")){
+        mensaje = true
+    }
+
+    return mensaje;
+}
+
+fun menu(){
+    println("****************MENU***************")
+    println("* Por favor selecciona una opcion:*")
+    println("*  1- Iniciar sesion:             *")
+    println("*  2- Entrar como invitado:       *")
+    println("*  3- Registrarse:                *")
+    println("*  4- Salir:                      *")
+    println("***********************************")
+
+    println("\nIngresa un digito:")
+    val opcion = readLine()!!
+    when (Integer.parseInt(opcion)) {
+        1 -> {
+            println("Por favor ingresa tu usuario:")
+            val usuarioActual = readLine()!!
+
+            println("Por favor ingresa tu contrasenia:")
+            val passwordActual = readLine()!!
+
+            if(verificarUsuario(usuarioActual,passwordActual)){
+                println("BIENVENID@ $usuarioActual\n")
+            }else{
+                println("Usuario o Contrasenia incorrecta\n")
+            }
+        }
+        2 -> print("BIENVENID@")
+        3 -> print("EN MANTENIMIENTO")
+        4 -> print("GRACIAS; REGRESA PRONTO")
+    }
+
+}
+
+
+*/
+
+
+
+
+//Modificación
+/*
 data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
 
@@ -10,18 +122,12 @@ fun main(){
     val user = "Bedu"
     val password = "toor"
 
-    //inicializar la clase Producto y cargar datos en ella
-    val productos: MutableMap<Int, Producto> = mutableMapOf()
-    cargar(productos)
-
     println("")
     println("   Bienvenid@ a Mercado Libre      ")
-    // menu()
+    menu()
 
-//   consultaProductoPorNombre(productos)
-    //  consultaProductoPorMarca(productos)
-    // consultaProductoPorCategoria(productos)
-    listadoCompleto(productos)
+
+
 }
 
 fun verificarUsuario(user: String, password: String): Boolean {
@@ -60,7 +166,7 @@ fun menu(){
 
                 cargar(productos)
                 listadoCompleto(productos)
-                //  listadoCompleto(productos)
+                listadoCompleto(productos)
                 consultaProducto(productos)
             }else{
                 println("Usuario o Contrasenia incorrecta\n")
@@ -105,7 +211,7 @@ fun cargar(productos: MutableMap<Int, Producto>) {
 
 fun listadoCompleto(productos: MutableMap<Int, Producto>) {
 
-    println("Deseas ver el listado completo de productos? si/no: ")
+    println("Deseas ver el listado completo de productos?: ")
     val respuesta = readLine()!!
     when (respuesta) {
         "si" -> {
@@ -134,77 +240,6 @@ fun consultaProducto(productos: MutableMap<Int, Producto>) {
         println("No existe un producto con  dicho código")
 }
 
-fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>) {
-    var bandera = false
-    print("Ingrese el nombre del  producto para ver mas detalles:")
-    val nombreBuscar = readLine()!!
-
-    println("\n**********Productos Encontrados: ********** \n")
-    for ((key, value) in productos) {
-        if(nombreBuscar in value.nombre){
-            println("Nombre: ${value.nombre}")
-            println("Marca: ${value.marca}")
-            println("Categoria: ${value.categoria}")
-            println("Precio: $ ${value.precio}")
-            // println("Se econtro el producto")
-            println("************************")
-            bandera =true
-        }
-    }
-    if(bandera == false){
-        println("No se encontro ningun producto con este nombre")
-    }
-
-}
-
-fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>) {
-    var bandera = false
-    print("Ingrese la marca de un producto para ver mas detalles:")
-    val nombreBuscar = readLine()!!
-
-    println("\n**********Productos Encontrados: ********** \n")
-    for ((key, value) in productos) {
-        if(nombreBuscar in value.marca){
-            println("Nombre: ${value.nombre}")
-            println("Marca: ${value.marca}")
-            println("Categoria: ${value.categoria}")
-            println("Precio: $ ${value.precio}")
-            // println("Se econtro el producto")
-            println("************************")
-            bandera =true
-        }
-    }
-    if(bandera == false){
-        println("No se encontro ningun producto de esta Marca")
-    }
-}
-
-fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>) {
-    var bandera = false
-    print("Ingrese la categoria de productos a buscar:")
-    val categoriaBuscar = readLine()!!.capitalize()
-
-    println("\n**********Productos Encontrados: ********** \n")
-    for ((key, value) in productos) {
-
-        if(categoriaBuscar in value.categoria){
-            //  println("$key = $value")
-            println("Nombre: ${value.nombre}")
-            println("Marca: ${value.marca}")
-            println("Categoria: ${value.categoria}")
-            println("Precio: $ ${value.precio}")
-            // println("Se econtro el producto")
-            println("************************")
-            bandera =true
-        }
-    }
-    if(bandera == false){
-        println("No se encontro ningun producto en esta categoria")
-    }
-
-}
-
-
 
 fun comprar(productos: MutableMap<Int, Producto>) {
     println("Que producto deseas comprar: ")
@@ -216,3 +251,49 @@ fun sinStock(productos: MutableMap<Int, Producto>) {
     val cant = productos.count { it.value.cantidad == 0 }
     println("Cantidad de artículos sin stock: $cant")
 }
+
+
+////////////////////////////
+//funciones para buscar productos por nombre y por marca:
+
+fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>) {
+    print("Ingrese el nombre del  producto para ver mas detalles:")
+    val nombreBuscar = readLine()!!
+
+    for ((key, value) in productos) {
+        if(nombreBuscar in value.nombre){
+            println("$key = $value")
+            println("Se econtro el producto")
+        }
+    }
+}
+
+fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>) {
+    print("Ingrese la marca de un producto para ver mas detalles:")
+    val nombreBuscar = readLine()!!
+
+    for ((key, value) in productos) {
+        if(nombreBuscar in value.marca){
+            println("$key = $value")
+            println("Se econtro el producto")
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// CODIGO MODIFICADO CON FUNCIONES DE BUSCAR PRODUCTOS POR NOMBRE Y POR CATEGORIA:
+*/
+
