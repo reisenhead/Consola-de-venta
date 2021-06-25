@@ -71,12 +71,12 @@ fun iniciarSesion(){
     val userValidated = validate(usuarioActual)
     val passValidate = validate(passwordActual)
 
-    if(userValidated && passValidate) {
+    if(userValidated&&passValidate) {
         if (verificarUsuario(usuarioActual, passwordActual)) {
             println("BIENVENID@ $usuarioActual\n")
 
-            cargar(productos)
-            listadoCompleto(productos)
+            //cargar(productos)
+            //listadoCompleto(productos)
             //  listadoCompleto(productos)
             // consultaProducto(productos)
         } else {
@@ -87,6 +87,8 @@ fun iniciarSesion(){
         println("Los campos no pueden estar vacíos \n")
         iniciarSesion()
     }
+
+    menuInicio()
 }
 
 
@@ -97,10 +99,32 @@ fun validate(input: String): Boolean{
     return true
 }
 
+fun menuInicio() {
+
+    val productos: MutableMap<Int, Producto> = mutableMapOf()
+
+    println("**********Bienvenido a Mercado Libre**********")
+    println("* Por favor selecciona una opcion:           *")
+    println("*  1- Ver el listado completo de productos:  *")
+    println("*  2- Consulta producto por categoria:       *")
+    println("*  3- Consulta producto por marca:           *")
+    println("*  4- Salir:                                 *")
+    println("**********************************************")
+    val opcion = readLine()
+    when (Integer.parseInt(opcion)) {
+        1 -> listadoCompleto(productos)
+        2 -> consultaProductoPorCategoria(productos)
+        3 -> consultaProductoPorMarca(productos)
+        4 -> print("GRACIAS; REGRESA PRONTO")
+    }
+}
+
 
 
 
 fun listadoCompleto(productos: MutableMap<Int, Producto>) {
+
+    cargar(productos)
 
     println("Deseas ver el listado completo de productos? si/no: ")
     val respuesta = readLine()!!
