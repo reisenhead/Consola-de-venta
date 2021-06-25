@@ -71,7 +71,7 @@ fun iniciarSesion(){
     val userValidated = validate(usuarioActual)
     val passValidate = validate(passwordActual)
 
-    if(userValidated&&passValidate) {
+    if(userValidated && passValidate) {
         if (verificarUsuario(usuarioActual, passwordActual)) {
             println("BIENVENID@ $usuarioActual\n")
 
