@@ -11,7 +11,7 @@ data class Producto(val nombre: String, val marca:String, val categoria:String,v
         productos[13] = Producto("Smart TV Samsung 40\"", "Samsung", "Televisor", 5500f, 3)
         productos[14] = Producto("Smart TV Sony 43\"", "Sony", "Televisor", 8999.90f, 7)
         productos[15] = Producto("Smart TV Samsung 50\"", "Samsung", "Televisor", 12699.90f, 9)
-        productos[16] = Producto("Huawei whatch Fit 1.64\"", "Huawei", "Reloj", 1849f, 20)
+        productos[16] = Producto("Huawei watch Fit 1.64\"", "Huawei", "Reloj", 1849f, 20)
         productos[17] = Producto("Samsung Galaxy Note 10", "Samsung", "Celular", 9261.20f, 3)
         productos[18] = Producto("Samsung Galaxi S21+", "Samsung", "Celular", 18496.90f, 8)
         productos[19] = Producto("Smart TV Hisense 40\"", "Hisense", "Televisor", 5499.99f, 18)
