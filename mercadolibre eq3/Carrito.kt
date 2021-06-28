@@ -1,5 +1,5 @@
-//package `mercadolibre eq3`
-// CLASE CARRITO ******git
+package `mercadolibre eq3`
+// CLASE CARRITO *****
 class Carrito(var nombre: String?, var cantidad: Int) {
     //constructor() : this()
 

@@ -241,7 +241,7 @@ fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>) {
 
 }
 
-// MENU CARRITO LE FALTA  SINCRONIZARLO CON EL MENU DE LISTADO DE PRODUCTOS *****
+// MENU CARRITO LE FALTA  SINCRONIZARLO CON EL MENU DE LISTADO DE PRODUCTOS ****+
 fun carrito() {
     var car = Carrito(nombre = "Laptop", cantidad = 1)
     println("**********Productos del carrito: ***********")
