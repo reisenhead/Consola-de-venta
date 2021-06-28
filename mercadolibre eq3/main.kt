@@ -1,4 +1,4 @@
-import `mercadolibre eq3`.Carrito
+
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
@@ -241,7 +241,10 @@ fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>) {
 
 }
 
-// MENU CARRITO LE FALTA  SINCRONIZARLO CON EL MENU DE LISTADO DE PRODUCTOS ****+
+
+
+// MENU CARRITO LE FALTA  SINCRONIZARLO CON EL MENU DE LISTADO DE PRODUCTOS *****+
+
 fun carrito() {
     var car = Carrito(nombre = "Laptop", cantidad = 1)
     println("**********Productos del carrito: ***********")
