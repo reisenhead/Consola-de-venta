@@ -4,6 +4,8 @@ package `mercadolibre eq3`
 
 data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
+
+
     fun cargar(productos: MutableMap<Int, Producto>) {
         productos[10] = Producto("Galaxi Z flip", "Samsung", "Celular", 24999.99f, 20)
         productos[11] = Producto("Huawei P40", "Huawei", "Celular", 5099.90f, 15)

@@ -1,6 +1,7 @@
 import java.util.*
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
+import `mercadolibre eq3`.*
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
 
@@ -10,22 +11,30 @@ fun main(){
     val password = "toor"*/
 
     //inicializar la clase Producto y cargar datos en ella
-    val productos: MutableMap<Int, Producto> = mutableMapOf()
+  /*  val productos: MutableMap<Int, Producto> = mutableMapOf()
 
     cargar(productos)
-
-
     println("")
     println("   Bienvenid@ a Mercado Libre      ")
+*/
 
-
+    /*A continucacion se manda a llamar la funcion principal de la Aplicacion*/
     menu()
+    /*var persona = Person()
+    persona.setNombre("Chee")
 
+    println(persona.getNombre())
+
+    var persona2 = Person("Jose","Calderon Castillo","Masculino",23)
+    println(persona2.getNombre())
+
+    var cliente1 = persona2
+    println("El nombre del primer cliente es: ${cliente1.getNombre()}")*/
 
     //consultaProductoPorCoicidencia(productos)
 
     //menuInicio()
-//   consultaProductoPorNombre(productos)
+    //   consultaProductoPorNombre(productos)
     //  consultaProductoPorMarca(productos)
     // consultaProductoPorCategoria(productos)
     //listadoCompleto(productos)
