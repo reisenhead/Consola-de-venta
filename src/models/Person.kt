@@ -1,8 +1,12 @@
-package `mercadolibre eq3`
-
+package models
+/*
+ abstract class Product(var price: Float, var name: String, var sku: String) {
+    abstract fun getTotalPrice(quantity: Int): Float
+}
+* */
 open class Person(){
 
-    private var idUsuario: Int = 0
+    private var idPersona: Int = 0
     private var nombre: String = ""
     private var apellidos: String = ""
     private var sexo: String = "sexo"
@@ -12,7 +16,6 @@ open class Person(){
 
 
     constructor (nombre:String,apellidos:String,sexo: String,edad: Int,direccion: String) : this() {
-
         this.nombre=nombre
         this.apellidos=apellidos
         this.sexo=sexo

@@ -74,6 +74,7 @@ fun menu(){
 
 fun iniciarSesion(){
     val productos: MutableMap<Int, Producto> = mutableMapOf()
+    println("----------INICIAR SESION------------:")
     println("Por favor ingresa tu usuario:")
     val usuarioActual = readLine()!!
 
@@ -186,7 +187,6 @@ fun consultaProductoPorCoicidencia(productos: MutableMap<Int, Producto>) {
     if(bandera == false){
         println("No se encontro ningun producto con este nombre")
     }
-
 }
 
 /*Consulta y retorna todos los productos que tenga por nombre al que se ingreso
