@@ -2,42 +2,12 @@ import java.util.*
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
 import `mercadolibre eq3`.*
-//data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
-
-
+import controllers.registrarNuevoUsuarioCliente
 
 fun main(){
-    /*val user = "Bedu"
-    val password = "toor"*/
-
-    //inicializar la clase Producto y cargar datos en ella
-  /*  val productos: MutableMap<Int, Producto> = mutableMapOf()
-
-    cargar(productos)
-    println("")
-    println("   Bienvenid@ a Mercado Libre      ")
-*/
-
     /*A continucacion se manda a llamar la funcion principal de la Aplicacion*/
     menu()
-    /*var persona = Person()
-    persona.setNombre("Chee")
 
-    println(persona.getNombre())
-
-    var persona2 = Person("Jose","Calderon Castillo","Masculino",23)
-    println(persona2.getNombre())
-
-    var cliente1 = persona2
-    println("El nombre del primer cliente es: ${cliente1.getNombre()}")*/
-
-    //consultaProductoPorCoicidencia(productos)
-
-    //menuInicio()
-    //   consultaProductoPorNombre(productos)
-    //  consultaProductoPorMarca(productos)
-    // consultaProductoPorCategoria(productos)
-    //listadoCompleto(productos)
 }
 
 fun verificarUsuario(user: String, password: String): Boolean {
@@ -57,7 +27,7 @@ fun menu(){
     println("* Por favor selecciona una opcion:*")
     println("*  1- Iniciar sesion:             *")
     println("*  2- Entrar como invitado:       *")
-    println("*  3- Registrarse:                *")
+    println("*  3- Crea tu cuenta:             *")
     println("*  4- Salir:                      *")
     println("***********************************")
 
@@ -66,7 +36,7 @@ fun menu(){
     when (Integer.parseInt(opcion)) {
         1 -> iniciarSesion()
         2 -> menuInicio()
-        3 -> print("EN MANTENIMIENTO")
+        3 -> registrarNuevoUsuarioCliente()//funcion para crear un nuevo usuario y cliente
         4 -> print("GRACIAS; REGRESA PRONTO")
     }
 
@@ -74,8 +44,9 @@ fun menu(){
 
 fun iniciarSesion(){
     val productos: MutableMap<Int, Producto> = mutableMapOf()
-    println("----------INICIAR SESION------------:")
-    println("Por favor ingresa tu usuario:")
+    println("----------!Hola! Para seguir, ingresa tu teléfono, e-mail o usuario---------:")
+
+    println("Teléfono, e-mail o usuario:")
     val usuarioActual = readLine()!!
 
     println("Por favor ingresa tu contrasenia:")
