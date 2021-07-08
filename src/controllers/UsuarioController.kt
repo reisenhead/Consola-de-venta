@@ -1,5 +1,6 @@
 package controllers
 
+import models.Cliente
 import models.Usuario
 import java.util.*
 import java.util.*
@@ -57,18 +58,32 @@ fun  generarUsuario(nombre:String,apellido:String):String{
     return usuarioCreado+2021
 }
 
-fun existeUsuario(usuariosMap:MutableMap<Int, Usuario>, user:String):Boolean{
+fun existeUsuario(usuariosClientes: MutableMap<Usuario, Cliente>, user:String):Boolean{
     var existe=false
-    for ((key, value) in usuariosMap) {
+    usuariosClientes.forEach {
         /*println("IdUsuario: $key")
         println("Usuario: ${value.getUsuario()}")*/
 
-        if (value.getUsuario().equals(user)) {
+        if ((it.key.getUsuario()).equals(user)) {
             existe=true
         }
     }
     return existe
 }
+
+fun isContraseniaCorrecta(usuariosClientes: MutableMap<Usuario, Cliente>, password:String):Boolean{
+    var contraseniaCorreta=false
+    usuariosClientes.forEach {
+        /*println("IdUsuario: $key")
+        println("Usuario: ${value.getUsuario()}")*/
+
+        if ((it.key.getContrasenia()).equals(password)) {
+            contraseniaCorreta=true
+        }
+    }
+    return contraseniaCorreta
+}
+
 
 fun totalUsuarios(usuariosMap:MutableMap<Int, Usuario>):Int{
     return usuariosMap.size

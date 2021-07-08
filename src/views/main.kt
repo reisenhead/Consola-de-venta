@@ -2,22 +2,48 @@ import java.util.*
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
 import `mercadolibre eq3`.*
-import controllers.registrarNuevoUsuarioCliente
+import controllers.*
+import models.Cliente
+import models.Usuario
 
 fun main(){
     /*A continucacion se manda a llamar la funcion principal de la Aplicacion*/
+
+
     menu()
+  /* usuariosCliente.forEach{
+       println("Usuario: ${it.key.getUsuario()}")
+       println("Nombre: ${it.value.getNombre()}")
+       println("Apellidos: ${it.value.getApellidos()}")
+       println()
+   }*/
 
 }
 
-fun verificarUsuario(user: String, password: String): Boolean {
+fun verificarUsuario(user: String, password: String) {
+    var usuariosCliente: MutableMap<Usuario, Cliente> = mutableMapOf()
+    usuariosCliente =  cargarUsuariosClientes(usuariosCliente)
+
     var mensaje: Boolean = false
 
-    if(user.contentEquals("Bedu") && password.contentEquals("toor")){
-        mensaje = true
+    if(existeUsuario(usuariosCliente,user) || existeCorreo(usuariosCliente,user) || existeNumeroTelefonico(usuariosCliente,user)){
+        if(isContraseniaCorrecta(usuariosCliente,password)){
+            iniciarSesion()
+        }else{
+            do {
+                println("Revisa tu clave.\n")
+                println("Clave")
+                val passwordActual = readLine()!!
+            }while(!(isContraseniaCorrecta(usuariosCliente,passwordActual)))
+            println("Hola ${obtenerNombreAmostrar(usuariosCliente,user)}")
+            menuInicio()
+        }
+    }else{
+        println("Revisa tu e-mail o usuario.\n")
+        iniciarSesion()
     }
 
-    return mensaje;
+
 }
 
 fun menu(){
@@ -49,29 +75,20 @@ fun iniciarSesion(){
     println("Teléfono, e-mail o usuario:")
     val usuarioActual = readLine()!!
 
-    println("Por favor ingresa tu contrasenia:")
+    println("Clave:")
     val passwordActual = readLine()!!
 
     val userValidated = validate(usuarioActual)
     val passValidate = validate(passwordActual)
 
     if(userValidated&&passValidate) {
-        if (verificarUsuario(usuarioActual, passwordActual)) {
-            println("BIENVENID@ $usuarioActual\n")
-
-            //cargar(productos)
-            //listadoCompleto(productos)
-            //  listadoCompleto(productos)
-            // consultaProducto(productos)
-        } else {
-            println("Usuario o Contrasenia incorrecta\n")
-            iniciarSesion()
-        }
+        verificarUsuario(usuarioActual, passwordActual)
+          //  println("BIENVENID@ $usuarioActual\n")
     }else{
         println("Los campos no pueden estar vacíos \n")
         iniciarSesion()
     }
-    menuInicio()
+    //menuInicio()
 }
 
 

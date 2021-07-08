@@ -25,7 +25,7 @@ fun main() {
     clientesMap[beto.getIdCliente()] = beto
     clientesMap[jose.getIdCliente()] = jose
 
-    println(existeUsuario(usuariosMap,"CACJOJ2021"))
+    //println(existeUsuario(usuariosMap,"CACJOJ2021"))
   /*  for ((key, value) in usuariosMap) {
         println("IdUsuario: $key")
         println("Usuario: ${value.getUsuario()}")

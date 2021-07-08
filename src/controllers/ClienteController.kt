@@ -15,11 +15,11 @@ fun cargarUsuariosClientes(usuariosClientes: MutableMap<Usuario, Cliente>): Muta
     val usuarioBeto = Usuario(1, "Beto","toor")
     val beto =Cliente(usuarioBeto.getIdUsuario(),1,"Beto","Santander","beto.santander@gmail.com")
     usuarioBeto.setUsuario(generarUsuario(beto.getNombre(),beto.getApellidos()))
-
+   // println("User: ${usuarioBeto.getUsuario()}")
     val usuarioJose = Usuario(2, "Chee","toor")
     val jose =Cliente(usuarioJose.getIdUsuario(),2,"Jose J","Calderon C","josechee.unp@gmail.com")
     usuarioJose.setUsuario(generarUsuario(jose.getNombre(),jose.getApellidos()))
-
+    //println("USer: ${usuarioJose.getUsuario()}")
     var usuariosMap: MutableMap<Int, Usuario> = mutableMapOf()
     var clientesMap: MutableMap<Int,Cliente> = mutableMapOf()
     usuariosMap[usuarioBeto.getIdUsuario()] = usuarioBeto
@@ -31,6 +31,10 @@ fun cargarUsuariosClientes(usuariosClientes: MutableMap<Usuario, Cliente>): Muta
     usuariosClientes.put(usuarioBeto,beto)
     usuariosClientes.put(usuarioJose,jose)
 
+    /*
+    * User: SAB2021
+    * User: CACJOJ2021
+     */
      return usuariosClientes
 }
 
@@ -206,15 +210,26 @@ fun existeCorreo(usuariosClientes: MutableMap<Usuario, Cliente>,email:String):Bo
     return existe
 }
 
-fun existeNumeroTelefonico(clientesMap:MutableMap<Int,Cliente>,numeroTelefonico:String):Boolean{
+fun existeNumeroTelefonico(usuariosClientes: MutableMap<Usuario, Cliente>,numeroTelefonico:String):Boolean{
     var existe=false
-    for ((key, value) in clientesMap) {
+    for ((key, value) in usuariosClientes) {
         /*println("IdUsuario: $key")
         println("Usuario: ${value.getUsuario()}")*/
-
         if (value.getNumeroTelefonico().equals(numeroTelefonico)) {
             existe=true
         }
     }
     return existe
+}
+
+fun obtenerNombreAmostrar(usuariosClientes: MutableMap<Usuario, Cliente>,user:String):String{
+    var nombre: String =""
+    for ((key, value) in usuariosClientes) {
+        /*println("IdUsuario: $key")
+        println("Usuario: ${value.getUsuario()}")*/
+        if (key.getUsuario().equals(user) || value.getEmail().equals(user)||value.getNumeroTelefonico().equals(user)) {
+            nombre=value.getNombre()
+        }
+    }
+    return nombre
 }
