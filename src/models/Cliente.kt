@@ -55,12 +55,12 @@ class Cliente(idUsuario:Int,idCliente:Int,nombre: String,apellidos: String,email
           this.email=email
      }
 
-     fun mostrarDadosNuevoUsuario(usuario: Usuario,cliente: Cliente){
+     fun mostrarDatosNuevoUsuario(usuario: Usuario,cliente: Cliente){
            println("Cliente creado:\n" +
                   "Nombre: ${cliente.getNombre()}\n" +
                   "Apellidos: ${cliente.getApellidos()}\n" +
                   "Email: ${cliente.getEmail()}\n"+
-                   "Email: ${usuario.getUsuario()}\n" )
+                   "Nombre de Usuario: ${usuario.getUsuario()}\n" )
      }
 
 /*    constructor(idCliente: Int,idUsuario: Int) :this(){

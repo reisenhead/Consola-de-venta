@@ -71,7 +71,6 @@ fun iniciarSesion(){
         println("Los campos no pueden estar vacíos \n")
         iniciarSesion()
     }
-
     menuInicio()
 }
 
