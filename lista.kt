@@ -2,20 +2,22 @@ package Carrrito
 import Producto
 import cargar
 
+//V3
 
 fun main() {
 
     println("   Bienvenid@ a Mercado Libre      ")
 
 
-    // Funcion Carrito
-//    var i: String = "s"
-//    do {
-
     menucarrito()
 
 }
 
+
+var listacarrito : ArrayList<String> = arrayListOf<String>()
+var nombre = car()
+var Totalprecio : Float = 0.0f
+var Numero: Int = 0
 fun menucarrito() {
     println("*************************************************")
     println("*  Desea agregar un Articulo ingrese codigo     *")
@@ -23,10 +25,8 @@ fun menucarrito() {
 
     val productos: MutableMap<Int, Producto> = mutableMapOf()
     cargar(productos)
-    val opcion2 = readLine()!!.toInt()
+    var opcion2 = readLine()!!.toInt()
     val opc2 : Int = opcion2
-    //val add = opc2.add(opcion2!!.toInt())
-    //var total: Float = 0f
     var names1 = ""
     var precio1 = 0f
     var stok = 0
@@ -137,55 +137,96 @@ fun menucarrito() {
     else  {
         names1 = "articulo no encontrado"
     }
-    val namess = arrayListOf<kotlin.String>()
-    namess.add(names1)
+
     println("*************************************************")
     println("*  Ingrese la cantidad de articulos             *")
     println("*************************************************")
-    val opcion3 = readLine()!!.toInt()
-    val opc3 = arrayListOf<Int>()
+    var opcion3 = readLine()!!.toInt()
+    var opc3 = arrayListOf<Int>()
     opc3.add(opcion3)
 
-    val Tot = opcion3*precio1
-    val nombre = car()
-    val espacios ="  "
-    val espaciosl ="      "
-    val signo = "$"
+    var Tot = opcion3*precio1
+    Totalprecio = Totalprecio+Tot
+
+    var espacios ="  "
+    var espaciosl ="      "
+    var signo = "$"
+    var disponibles = stok - opcion3
+
+    var num = 1
+    Numero = Numero + num
+    nombre.agregarEsp(espacio= espacios)
+    nombre.agregarNumero(numero = Numero)
+    //nombre.agregarEsp(espacio= espacios)
     nombre.agregarEsp(espacio= espaciosl)
-    nombre.agregarCantidad(cantidad = opc3)
+    nombre.agregarCantidad(cantidad = opcion3)
     nombre.agregarEsp(espacio= espaciosl)
     nombre.agregarNombre(nombre =names1)
     nombre.agregarEsp(espacio= espacios)
     nombre.agregarSigno(signo = signo)
     nombre.agregarPrecio(precio = precio1)
-    nombre.agregarEsp(espacio= espaciosl)
+    nombre.agregarEsp(espacio= espacios)
     nombre.agregarEsp(espacio= espacios)
     nombre.agregarStok(Stok= stok)
     nombre.agregarEsp(espacio= espaciosl)
     nombre.agregarEsp(espacio= espacios)
+    nombre.agregarDisponibles(disponible = disponibles)
+    //nombre.agregarEsp(espacio= espacios)
+    nombre.agregarEsp(espacio= espaciosl)
     nombre.agregarSigno(signo = signo)
     nombre.agregarTotal(total=Tot)
+    listacarrito.add(nombre.imprimirNombre())
+    nombre.clear()
 
-    println("*********************  Productos del carrito:    ********************************")
-    println("*                                                                               *")
-    println("*  Cantidad      Articulo                 Precio     Disponibles      Total     *")
-    println(nombre.imprimirNombre())
-    println("*********************************************************************************")
+    println("****************  Productos agregados al Carrito:    *******************************")
+    println("*                                                                                  *")
+    println("*No.  Cantidad      Articulo                Precio    stok   Disponibles     Total *")
+    lista()
+    println("************************************************************************************")
     agregarCarrrito()
 }
-fun menulinea() {
-    println("*********************************************************************************")
+
+
+fun lista() {
+    var cont= listacarrito.count()
+
+    listacarrito.forEach{
+        println(it)
+    }
+    println("************************************************************************************")
+    println("*  Cantidad de articulo agregados: $cont          Total a pagar $$Totalprecio       ")
+
 }
+
 fun agregarCarrrito() {
-    println("*     Deseas agregar un articulo al carrito si o no s/n                         *")
-    println("*********************************************************************************")
+    println("*       Deseas agregar un articulo al carrito si o no s/n                          *")
+    println("************************************************************************************")
     var x : String =  ""
      x = readLine()!!.toString()
 
     if(x == "s") {
         menucarrito()
     }else{
-     println("Regrese pronto")
+        println("*******************************************+")
+        println("*             Menu del carrito             *")
+        println("********************************************")
+        println("*    1. Regresar al Menu de productos      *")
+        println("*    2. Modificar cantidad de articulos    *")
+        println("*    3. Ir a Comprar                       *")
+        println("*    4. Salir de Programa                  *")
+        println("********************************************")
+        println("           Elija una opcion                 ")
+        val opcion = readLine()
+        when (Integer.parseInt(opcion)) {
+            1 -> println("Menu Carrito")
+            2 -> println("Que NO. de articulo desea eliminar")
+            3 -> println("Comprar articulos")
+            5 -> print("GRACIAS; REGRESA PRONTO A MERCADO LIBRE")
+        }
     }
+}
+fun elimarProducto() {
+
+    println("********** Que No. de articulo desea eliminar **************")
 
 }
