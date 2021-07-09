@@ -9,11 +9,31 @@ fun main() {
     println("   Bienvenid@ a Mercado Libre      ")
 
 
-    menucarrito()
+    Menucarrito1()
 
 }
 
+fun Menucarrito1() {
+    println("*******************************************+")
+    println("*             Menu del carrito             *")
+    println("********************************************")
+    println("*    1. Regresar al Menu de productos      *")
+    println("*    2. Articulo en el Carrito             *")
+    println("*    3. Eliminar articulos                 *")
+    println("*    4. Ir a Comprar                       *")
+    println("*    5. Salir de Programa                  *")
+    println("********************************************")
+    println("           Elija una opcion                 ")
+    val opcion = readLine()
+    when (Integer.parseInt(opcion)) {
+        1 -> menucarrito()
+        2 -> impresionCarrito()
+        3 -> elimarProducto()
+        4 -> println(" Comprando  Articulos  ")
+        5 -> print("GRACIAS POR SU VISITA; REGRESA PRONTO A MERCADO LIBRE")
 
+}
+}
 var listacarrito : ArrayList<String> = arrayListOf<String>()
 var nombre = car()
 var Totalprecio : Float = 0.0f
@@ -178,6 +198,9 @@ fun menucarrito() {
     listacarrito.add(nombre.imprimirNombre())
     nombre.clear()
 
+    impresionCarrito()
+}
+fun impresionCarrito() {
     println("****************  Productos agregados al Carrito:    *******************************")
     println("*                                                                                  *")
     println("*No.  Cantidad      Articulo                Precio    stok   Disponibles     Total *")
@@ -185,7 +208,6 @@ fun menucarrito() {
     println("************************************************************************************")
     agregarCarrrito()
 }
-
 
 fun lista() {
     var cont= listacarrito.count()
@@ -207,24 +229,10 @@ fun agregarCarrrito() {
     if(x == "s") {
         menucarrito()
     }else{
-        println("*******************************************+")
-        println("*             Menu del carrito             *")
-        println("********************************************")
-        println("*    1. Regresar al Menu de productos      *")
-        println("*    2. Modificar cantidad de articulos    *")
-        println("*    3. Ir a Comprar                       *")
-        println("*    4. Salir de Programa                  *")
-        println("********************************************")
-        println("           Elija una opcion                 ")
-        val opcion = readLine()
-        when (Integer.parseInt(opcion)) {
-            1 -> println("Menu Carrito")
-            2 -> println("Que NO. de articulo desea eliminar")
-            3 -> println("Comprar articulos")
-            5 -> print("GRACIAS; REGRESA PRONTO A MERCADO LIBRE")
+        Menucarrito1()
         }
-    }
 }
+
 fun elimarProducto() {
 
     println("********** Que No. de articulo desea eliminar **************")
