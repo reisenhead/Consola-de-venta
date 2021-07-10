@@ -28,7 +28,7 @@ fun verificarUsuario(user: String, password: String) {
 
     if(existeUsuario(usuariosCliente,user) || existeCorreo(usuariosCliente,user) || existeNumeroTelefonico(usuariosCliente,user)){
         if(isContraseniaCorrecta(usuariosCliente,password)){
-            iniciarSesion()
+            menuInicio()
         }else{
             do {
                 println("Revisa tu clave.\n")
@@ -42,7 +42,6 @@ fun verificarUsuario(user: String, password: String) {
         println("Revisa tu e-mail o usuario.\n")
         iniciarSesion()
     }
-
 
 }
 
@@ -65,7 +64,6 @@ fun menu(){
         3 -> registrarNuevoUsuarioCliente()//funcion para crear un nuevo usuario y cliente
         4 -> print("GRACIAS; REGRESA PRONTO")
     }
-
 }
 
 fun iniciarSesion(){
@@ -90,7 +88,6 @@ fun iniciarSesion(){
     }
     //menuInicio()
 }
-
 
 fun validate(input: String): Boolean{
     if(input.isEmpty()){
