@@ -1,11 +1,7 @@
 package models
+
+
 //Clase carrito v3
-/* Aqui la clases carrito agrega los datos de compra al carrito en un cadena de texto en la cual se agrega
-   primero la cantidad, despues el nombre del producto, precio,  disponbles y total de los articulos por el precio
-   en cada uno se le agrega espacios para que el texto no quede amontonado.
-   Tambien hay una funcion que se encarga de borrar la cadena de texto para el siguiente articulo a agregar
-   al final retorna el nombre ya con la suma de los textos y espacios agregados
- */
 class car{
     var nombreCompleto: String = ""
 
