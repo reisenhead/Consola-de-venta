@@ -12,14 +12,23 @@ import java.util.ArrayList
    o eliminar aticulos del carrito
  */
 fun Menucarrito() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> arreglandorama
     val productos: MutableMap<Int, Producto> = mutableMapOf()
     println("*******************************************+")
     println("*             Menu del carrito             *")
     println("********************************************")
     println("*    1. Regresar al Menu principal         *")
     println("*    2. Agregar más articulos al Carrito   *")
+<<<<<<< HEAD
     println("*    3. Ver Articulos en el Carrito        *")
     println("*    4. Eliminar articulos                 *")
+=======
+    println("*    3. Ver Articulo en el Carrito         *")
+    println("*    4. Eliminar articulos del Carrito     *")
+>>>>>>> arreglandorama
     println("*    5. Ir a Comprar                       *")
     println("*    6. Salir de Programa                  *")
     println("********************************************")
@@ -31,11 +40,15 @@ fun Menucarrito() {
         3 -> impresionCarrito()
         4 -> elimarProducto()
         5 -> println(" Comprando  Articulos  ")
+<<<<<<< HEAD
         6 -> {
             println("************************************************************************************")
             println("************* GRACIAS POR SU VISITA; REGRESA PRONTO A MERCADO LIBRE ****************")
             println("************************************************************************************")
         }
+=======
+        6 -> print("GRACIAS POR SU VISITA; REGRESA PRONTO A MERCADO LIBRE")
+>>>>>>> arreglandorama
 
     }
 }
@@ -47,8 +60,12 @@ var Totalprecio : Float = 0.0f
 var Numero: Int = 0
 var subTotal: ArrayList<Float> = arrayListOf<Float>()
 
+<<<<<<< HEAD
 /* En esta funcion  se reciben los codigos que desea agregar en el carrito ya mostrados, así como la
    cantidad de articulos, despues se encarga de seleccionar el articulo y mandarlo al carrito
+=======
+/*
+>>>>>>> arreglandorama
 */
 fun menucarritoagregar() {
     println("*************************************************")
@@ -212,9 +229,12 @@ fun menucarritoagregar() {
 
     impresionCarrito()
 }
+<<<<<<< HEAD
 /*  Aqui muestra los articulos del carrito aun cuando se se tenga nada en el carrito
 */
 
+=======
+>>>>>>> arreglandorama
 fun impresionCarrito() {
     println("************************************************************************************")
     println("                   Productos agregados al Carrito:                                 *")
@@ -225,10 +245,14 @@ fun impresionCarrito() {
     agregarCarrrito()
 }
 
+<<<<<<< HEAD
 /*
    Aquí se despliega la lista guardada en el la clase carrito, ademas de agregar
     Cantidad de articulo agregados: $cont          Total a pagar $$Totalprecio
      */
+=======
+
+>>>>>>> arreglandorama
 fun lista() {
     var cont= listacarrito.count()
 
@@ -237,11 +261,17 @@ fun lista() {
     }
     println("************************************************************************************")
     println("*  Cantidad de articulo agregados: $cont          Total a pagar $$Totalprecio       ")
+<<<<<<< HEAD
 }
 /* Aqui despliega si se desea agregar otro ariculo al carrito, si la respuesta es no se regresa al menu
    del carrito
 
 */
+=======
+
+}
+
+>>>>>>> arreglandorama
 fun agregarCarrrito() {
     println("*       Deseas agregar un articulo al carrito si o no s/n                          *")
     println("************************************************************************************")
@@ -254,10 +284,14 @@ fun agregarCarrrito() {
         Menucarrito()
     }
 }
+<<<<<<< HEAD
 /*  Esta función se encarga de eliminar del carrito el articulo segun sea el No. que el cliente desea
    eliminar
 
  */
+=======
+
+>>>>>>> arreglandorama
 fun elimarProducto() {
     println("************************************************************************************")
     println("*                  Productos agregados al Carrito:                                 *")
