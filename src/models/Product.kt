@@ -1,3 +1,4 @@
+/*
 package models
 
  class Mobile(
@@ -17,4 +18,4 @@ package models
 
     }
 
-}
+}*/
