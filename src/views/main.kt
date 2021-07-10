@@ -2,7 +2,7 @@ import java.util.*
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
 import `mercadolibre eq3`.*
-import models.car
+import models.carrito
 
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
@@ -308,7 +308,7 @@ fun Menucarrito() {
 /*  Aqui agregre estas variables globales para poderlas usar en todas mis siguientes funciones del Carrito
  */
 var listacarrito : ArrayList<String> = arrayListOf<String>()
-var nombre = car()
+var nombre = carrito()
 var Totalprecio : Float = 0.0f
 var Numero: Int = 0
 var subTotal: ArrayList<Float> = arrayListOf<Float>()

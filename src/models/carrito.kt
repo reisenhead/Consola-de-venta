@@ -1,8 +1,7 @@
 package models
-
-
 //Clase carrito v3
-class car{
+
+class carrito{
     var nombreCompleto: String = ""
 
     fun clear() {
