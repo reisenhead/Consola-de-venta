@@ -12,6 +12,7 @@ import java.util.ArrayList
    o eliminar aticulos del carrito
  */
 fun Menucarrito() {
+
     val productos: MutableMap<Int, Producto> = mutableMapOf()
     println("*******************************************+")
     println("*             Menu del carrito             *")
