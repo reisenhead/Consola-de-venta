@@ -1,9 +1,6 @@
 package controllers
 
-import `mercadolibre eq3`.Producto
 import models.Categoria
-
-import models.Usuario
 
 val categorias1 = mapOf(
     1 to "Vehiculos",
