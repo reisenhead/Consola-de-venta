@@ -1,10 +1,7 @@
-import java.util.*
 import models.Producto
 import models.Categoria
 import models.Marcas
-
 import controllers.menuCarrito
-import controllers.agregarCarrrito
 
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
@@ -15,6 +12,11 @@ import models.*
 
 fun main(){
 
+
+
+
+
+
    // A continucacion se manda a llamar la funcion principal de la Aplicacion
     menu()
 
@@ -24,7 +26,7 @@ fun verificarUsuario(user: String, password: String) {
     var usuariosCliente: MutableMap<Usuario, Cliente> = mutableMapOf()
     usuariosCliente =  cargarUsuariosClientes(usuariosCliente)
 
-    var mensaje: Boolean = false
+    var mensaje = false
 
     if(existeUsuario(usuariosCliente,user) || existeCorreo(usuariosCliente,user) || existeNumeroTelefonico(usuariosCliente,user)){
         if(isContraseniaCorrecta(usuariosCliente,password)){
@@ -77,6 +79,8 @@ fun menu(){
     }
 }
 
+
+
 fun iniciarSesion(){
     val productos: MutableMap<Int, Producto> = mutableMapOf()
     println("----------!Hola! Para seguir, ingresa tu teléfono, e-mail o usuario---------:")
@@ -108,7 +112,7 @@ fun validate(input: String): Boolean{
 
 fun menuInicio() {
 
-    val productos: MutableMap<Int, models.Producto> = mutableMapOf()
+    val productos: MutableMap<Int, Producto> = mutableMapOf()
     val categorias: MutableMap<Int, Categoria> = mutableMapOf()
     val marca: MutableMap<Int, Marcas> = mutableMapOf()
     val opcion: Int?
@@ -134,7 +138,7 @@ fun menuInicio() {
         return menuInicio()
     }
     when (opcion) {
-        1 -> listadoCompleto(productos)
+        1 -> listadoCompleto(productos, categorias)
         2 -> consultaProductoPorNombre(productos)
         3 -> consultaProductoPorCategoria(productos, categorias)
         4 -> consultaProductoPorMarca(productos, marca)
@@ -143,120 +147,4 @@ fun menuInicio() {
     }
 }
 
-fun listadoCompleto(productos: MutableMap<Int, Producto>) {
-    cargar(productos)
-
-    println("Deseas ver el listado completo de productos? si/no: ")
-    val respuesta = readLine()!!
-    when (respuesta) {
-        "si" -> {
-            for ((codigo, producto) in productos)
-                println("Código: $codigo  Nombre: ${producto.nombre} ")
-        }
-        "no" -> {
-            println("Tenemos estas categorias para ti: ")
-            for ((codigo,producto) in productos)
-                println("Categorias: ${producto.categoria}")
-        }
-        else -> {
-            println("No puedo reconocer tu respuesta, Busca el producto por categoria")
-        }
-    }
-
-    agregarCarrrito()
-
-}
-
-/*A continuacion la funcion tiene como objetivo buscar las letras o caracteres coicidentes dentro del nombre,
-marca, categoria de cada producto, este caracteres o letras son las que ingresan el usuario, para bucar o consultar.
-Por ejemplo: si se ingresa Hi, His, Hisen; me regresa los prodcutos que coincide en su nombre, marca, categoria;
-en este caso regresaría, todos los productos relacionados a Hisense.
-*/
-fun consultaProductoPorCoicidencia(productos: MutableMap<Int, Producto>) {
-    cargar(productos)
-    var bandera = false
-    print("Ingrese la palabra a buscar dentro de los productos:")
-    val nombreBuscar = readLine()!!.lowercase(Locale.getDefault())//convertir a minuscula el texto que se ingrese
-
-    println("\n**********Productos Encontrados: ********** \n")
-    for ((key, value) in productos) {
-        //convertir a minuscula el texto de cada value.
-        if( value.nombre.lowercase(Locale.getDefault()).contains("$nombreBuscar") ||
-            value.marca.lowercase(Locale.getDefault()).contains("$nombreBuscar") ||
-            value.categoria.lowercase(Locale.getDefault()).contains("$nombreBuscar")){
-
-            println("Nombre: ${value.nombre}")
-            println("Marca: ${value.marca}")
-            println("Categoria: ${value.categoria}")
-            println("Precio: $ ${value.precio}")
-            // println("Se econtro el producto")
-            println("************************")
-            bandera =true
-        }
-    }
-    if(bandera == false){
-        println("No se encontro ningun producto con este nombre")
-    }
-}
-
-/*Consulta y retorna todos los productos que tenga por nombre al que se ingreso
-Por ejemplo si se ingresa: Huawei P40, retornaria todos los detalles correspondiente a este producto(Huawei P40)
-*/
-fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>) {
-    cargar(productos)
-    var bandera = false
-    print("Ingrese el nombre del  producto para ver mas detalles:")
-    val nombreBuscar = readLine()!!.lowercase(Locale.getDefault())
-
-    println("\n**********Productos Encontrados: ********** \n")
-    for ((key, value) in productos) {
-        if(nombreBuscar in value.nombre.lowercase(Locale.getDefault())){
-            println("Nombre: ${value.nombre}")
-            println("Marca: ${value.marca}")
-            println("Categoria: ${value.categoria}")
-            println("Precio: $ ${value.precio}")
-            // println("Se econtro el producto")
-            println("************************")
-            bandera =true
-        }
-    }
-    if(bandera == false){
-        println("No se encontro ningun producto con este nombre")
-    }
-}
-
-
-
-fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>) {
-    cargar(productos)
-    var bandera = false
-    print("Ingrese la categoria de productos a buscar:")
-    val categoriaBuscar = readLine()!!.lowercase(Locale.getDefault())
-
-    println("\n**********Productos Encontrados: ********** \n")
-    for ((key, value) in productos) {
-        if(categoriaBuscar in value.categoria.lowercase(Locale.getDefault())){
-            //  println("$key = $value")
-            println("Nombre: ${value.nombre}")
-            println("Marca: ${value.marca}")
-            println("Categoria: ${value.categoria}")
-            println("Precio: $ ${value.precio}")
-            // println("Se econtro el producto")
-            println("************************")
-            bandera =true
-        }
-    }
-    if(bandera == false){
-        println("No se encontro ningun producto en esta categoria")
-    }
-}
-
-fun comprar(productos: MutableMap<Int, Producto>) {
-    println("Que producto deseas comprar: ")
-}
-
-fun sinStock(productos: MutableMap<Int, Producto>) {
-    val cant = productos.count { it.value.cantidad == 0 }
-    println("Cantidad de artículos sin stock: $cant")
-}
 

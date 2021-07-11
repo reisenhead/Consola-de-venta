@@ -1,7 +1,7 @@
 package controllers
-import listadoCompleto
 import menuInicio
 import models.Carrito
+import models.Categoria
 import models.Producto
 import java.util.ArrayList
 
@@ -11,6 +11,7 @@ import java.util.ArrayList
  */
 fun menuCarrito() {
     val productos: MutableMap<Int, Producto> = mutableMapOf()
+    val categorias: MutableMap<Int, Categoria> = mutableMapOf()
     println("*******************************************+")
     println("*             Menu del carrito             *")
     println("********************************************")
@@ -25,7 +26,7 @@ fun menuCarrito() {
     val opcion = readLine()
     when (Integer.parseInt(opcion)) {
         1 -> menuInicio()
-        2 -> listadoCompleto(productos)
+        2 -> listadoCompleto(productos,categorias)
         3 -> impresionCarrito()
         4 -> elimarProducto()
         5 -> println(" Comprando  Articulos  ")
@@ -240,10 +241,10 @@ fun lista() {
 fun agregarCarrrito() {
     println("*       Deseas agregar un articulo al carrito si o no s/n                          *")
     println("************************************************************************************")
-    var x : String =  ""
-    x = readLine()!!.toString()
+    var opcionSi : String =  ""
+    opcionSi = readLine()!!.toString()
 
-    if(x == "s") {
+    if(opcionSi == "s") {
         menuCarritoAgregar()
     }else{
         menuCarrito()

@@ -147,7 +147,7 @@ fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>, categoria
 }
 
 
-fun listadoCompleto(productos: MutableMap<Int, Producto>) {
+fun listadoCompleto(productos: MutableMap<Int, Producto>,categorias: MutableMap<Int, Categoria>) {
 
     cargar(productos)
 
@@ -155,13 +155,19 @@ fun listadoCompleto(productos: MutableMap<Int, Producto>) {
     val respuesta = readLine()!!
     when (respuesta) {
         "si" -> {
-            for ((codigo, producto) in productos)
-                println("Código: $codigo  Nombre: ${producto.nombre} ")
+            for ((key,value) in productos) {
+                println("Codigo: $key")
+                println("Nombre: ${value.nombre}")
+                println("Marca: ${value.marca}")
+                println("Categoria: ${value.categoria}")
+                println("Precio: $ ${value.precio}")
+                println("************************")
+            }
         }
         "no" -> {
             println("Tenemos estas categorias para ti: ")
-            for ((_,producto) in productos)
-                println("Categorias: ${producto.categoria}")
+
+            mostrarCategorias(categorias)
         }
         else -> {
             println("No puedo reconocer tu respuesta, Busca el producto por categoria")
