@@ -4,6 +4,8 @@ import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
 import listadoCompleto
 import menuInicio
+import models.Cliente
+import models.Usuario
 import models.carrito
 import java.util.ArrayList
 
@@ -26,7 +28,7 @@ fun Menucarrito() {
     println("           Elija una opcion                 ")
     val opcion = readLine()
     when (Integer.parseInt(opcion)) {
-        1 -> menuInicio()
+        1 -> menuInicio(Usuario(1,"",""), Cliente(0,0,"","",""))
         2 -> listadoCompleto(productos)
         3 -> impresionCarrito()
         4 -> elimarProducto()

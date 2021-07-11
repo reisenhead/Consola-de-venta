@@ -1,20 +1,13 @@
 package test
 
 
-import `mercadolibre eq3`.Producto
 import controllers.*
-import models.Cliente
-import models.Usuario
-import models.UsuarioDataClass
-
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 fun main() {
  //   var usuariosCliente: MutableMap<Usuario, Cliente> = mutableMapOf()
 
     //registrarNuevoUsuarioCliente()
-
+/*
     var opcion = readLine()!!
   //  println(opcion)
  //   println(isInt(opcion))
@@ -22,16 +15,23 @@ fun main() {
         println("isInt() = ''? -> ${isInt(opcion)}")
     }else{
         println(isInt(opcion))
-    }
+    }*/
+   var cadena:String = "859p1"
+    println(esCodigoPostal(cadena))
 
 }
 
 fun isInt(valor:String):Any{
     var result:Boolean = false
     try {
-      return  valor.toInt()
+      return  Integer.parseInt(valor)
     } catch(e: Exception){
         return ""
     }
 }
+
+
+
+
+
 

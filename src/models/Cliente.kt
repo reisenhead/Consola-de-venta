@@ -64,6 +64,23 @@ class Cliente(idUsuario:Int,idCliente:Int,nombre: String,apellidos: String,email
                     "\nBienvenido: ${cliente.getNombre()}\n")
      }
 
+     fun mostrarDatosDelCliente(usuario: Usuario,cliente: Cliente){
+          println("********MIS DATOS********\n\n" +
+                  "----DATOS DE LA CUENTA----:\n"+
+                  "Nombre de Usuario: ${usuario.getUsuario()}\n"+
+                  "Email: ${cliente.getEmail()}\n"+
+                  "\n\n----DATOS PERSONALES----:\n"+
+                  "Nombre: ${cliente.getNombre()}\n" +
+                  "Apellidos: ${cliente.getApellidos()}\n" +
+                  "Número Telefónico: ${cliente.getNumeroTelefonico()}\n"+
+                  "\n\n----TARJETAS:----\n"+
+                  "No tienes ninguna tarjeta de crédito:\n"+
+                  "\n\n----DIRECCIONES:----\n"+
+                  "Código Postal: ${cliente.getCodigoPostal()}\n"+
+                  "Dirección: ${cliente.getDireccion()}\n"+
+                  "\nBienvenido: ${cliente.getNombre()}\n")
+     }
+
 /*    constructor(idCliente: Int,idUsuario: Int) :this(){
         this.idCliente=idCliente
         this.idUsuario=idUsuario
