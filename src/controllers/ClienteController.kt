@@ -4,9 +4,7 @@ import iniciarSesion
 import menuInicio
 import models.Cliente
 import models.Usuario
-import models.UsuarioDataClass
 import validate
-import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -20,8 +18,8 @@ fun cargarUsuariosClientes(usuariosClientes: MutableMap<Usuario, Cliente>): Muta
     val jose =Cliente(usuarioJose.getIdUsuario(),2,"Jose J","Calderon C","josechee.unp@gmail.com")
     usuarioJose.setUsuario(generarUsuario(jose.getNombre(),jose.getApellidos()))
     //println("USer: ${usuarioJose.getUsuario()}")
-    var usuariosMap: MutableMap<Int, Usuario> = mutableMapOf()
-    var clientesMap: MutableMap<Int,Cliente> = mutableMapOf()
+    val usuariosMap: MutableMap<Int, Usuario> = mutableMapOf()
+    val clientesMap: MutableMap<Int,Cliente> = mutableMapOf()
     usuariosMap[usuarioBeto.getIdUsuario()] = usuarioBeto
     usuariosMap[usuarioJose.getIdUsuario()] = usuarioJose
 
@@ -49,10 +47,11 @@ fun registrarNuevoUsuarioCliente(){
     var usuariosCliente: MutableMap<Usuario, Cliente> = mutableMapOf()
     usuariosCliente =  cargarUsuariosClientes(usuariosCliente)
     println("----------Completa tus datos---------:\n")
-    var nombre:String =""
-    var apellidos:String =""
+    var nombre=""
+    var apellidos=""
     var email:String =""
     var clave:String =""
+    /*Comprobar quer los datos ingresados sean lo mas reales possible (no numericos)*/
     do {
         println("Nombre:")
         nombre = readLine()!!
@@ -213,6 +212,11 @@ fun isInt(valor:String):Any{
         return ""
     }
 }
+/*
+fun isString():Any{
+
+}*/
+
 fun rangoOpcionValido(valor:String):Boolean{
     var result:Boolean = false
     try {
