@@ -2,6 +2,10 @@ import java.util.*
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
 import `mercadolibre eq3`.*
+import controllers.Menucarrito
+import controllers.agregarCarrrito
+import models.carrito
+
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
 
@@ -122,7 +126,8 @@ fun menuInicio() {
     println("*  2- Buscar producto por nombre o coicidencia:  *")
     println("*  3- Consulta producto por categoria:           *")
     println("*  4- Consulta producto por marca:               *")
-    println("*  5- Salir:                                     *")
+    println("*  5- Carrito:                                   *")
+    println("*  6- Salir:                                     *")
     println("**************************************************")
     val opcion = readLine()
     when (Integer.parseInt(opcion)) {
@@ -130,7 +135,8 @@ fun menuInicio() {
         2 -> consultaProductoPorCoicidencia(productos)
         3 -> consultaProductoPorCategoria(productos)
         4 -> consultaProductoPorMarca(productos)
-        5 -> print("GRACIAS; REGRESA PRONTO")
+        5 -> Menucarrito()
+        6 -> print("GRACIAS; REGRESA PRONTO")
     }
 }
 
@@ -154,7 +160,7 @@ fun listadoCompleto(productos: MutableMap<Int, Producto>) {
             println("No puedo reconocer tu respuesta, Busca el producto por categoria")
         }
     }
-
+    agregarCarrrito()
 }
 
 /*A continuacion la funcion tiene como objetivo buscar las letras o caracteres coicidentes dentro del nombre,
@@ -273,3 +279,4 @@ fun sinStock(productos: MutableMap<Int, Producto>) {
     val cant = productos.count { it.value.cantidad == 0 }
     println("Cantidad de artículos sin stock: $cant")
 }
+
