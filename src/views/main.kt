@@ -5,6 +5,7 @@ import `mercadolibre eq3`.*
 import controllers.Menucarrito
 import controllers.agregarCarrrito
 import models.carrito
+import controllers.*
 
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
