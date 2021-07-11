@@ -3,7 +3,7 @@ package controllers
 import models.Categoria
 
 fun cargarCategorias(categorias: MutableMap<Int, Categoria>){
-    categorias[1] =  Categoria(1,"Vehiculos")
+    categorias[1] =  Categoria(1,"Animales y mascotas")
     categorias[2] =  Categoria(2,"Tecnologia")
     categorias[3] =  Categoria(3,"Electrodomesticos")
     categorias[4] =  Categoria(4,"Hogar y muebles")
@@ -17,9 +17,7 @@ fun cargarCategorias(categorias: MutableMap<Int, Categoria>){
     categorias[12] = Categoria(12,"Bebes")
     categorias[13] = Categoria(13,"Salud y equipamiento medico")
     categorias[14] = Categoria(14,"Belleza y cuidado personal")
-    categorias[15] = Categoria(15,"Inmuebles")
-    categorias[16] = Categoria(16,"Productos sustentables")
-    categorias[17] = Categoria(17,"Ver mas categorias")
+    categorias[15] = Categoria(15,"Instrumentos musicales")
 }
 
 fun compararCategorias(){
