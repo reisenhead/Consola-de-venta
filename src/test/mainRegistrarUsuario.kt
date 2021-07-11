@@ -1,7 +1,7 @@
 package test
 
 
-import `mercadolibre eq3`.Producto
+
 import controllers.*
 import models.Cliente
 import models.Usuario

@@ -2,44 +2,26 @@ package controllers
 
 import models.Categoria
 
-val categorias1 = mapOf(
-    1 to "Vehiculos",
-    2 to "Tecnologia",
-    3 to "Electrodomesticos",
-    4 to "Hogar y muebles",
-    5 to "Moda",
-    6 to "Deportes y fitness",
-    7 to "Herramientas",
-    8 to "Construccion",
-    9 to "Industrias y oficinas",
-    10 to "Accesorios para vehiculos",
-    11 to "Juegos y juguetes",
-    12 to "Bebes",
-    13 to "Salud y equipamiento medico",
-    14 to "Belleza y cuidado personal",
-    15 to "Inmuebles",
-    16 to "Productos sustentables",
-    17 to "Tiendas oficiales",
-    18 to "Ver mas categorias"
-)
-
 fun cargarCategorias(categorias: MutableMap<Int, Categoria>){
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
-    categorias[1] = Categoria(1,"Vehiculos")
+    categorias[1] =  Categoria(1,"Animales y mascotas")
+    categorias[2] =  Categoria(2,"Tecnologia")
+    categorias[3] =  Categoria(3,"Electrodomesticos")
+    categorias[4] =  Categoria(4,"Hogar y muebles")
+    categorias[5] =  Categoria(5,"Moda")
+    categorias[6] =  Categoria(6,"Deportes y fitness")
+    categorias[7] =  Categoria(7,"Herramientas")
+    categorias[8] =  Categoria(8,"Construccion")
+    categorias[9] =  Categoria(9,"Industrias y oficinas")
+    categorias[10] = Categoria(10,"Accesorios para vehiculos")
+    categorias[11] = Categoria(11,"Juegos y juguetes")
+    categorias[12] = Categoria(12,"Bebes")
+    categorias[13] = Categoria(13,"Salud y equipamiento medico")
+    categorias[14] = Categoria(14,"Belleza y cuidado personal")
+    categorias[15] = Categoria(15,"Instrumentos musicales")
 }
+
+fun compararCategorias(){
+
+
+}
+

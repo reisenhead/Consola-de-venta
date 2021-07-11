@@ -1,31 +1,22 @@
 import java.util.*
-import `mercadolibre eq3`.Producto
-import `mercadolibre eq3`.cargar
-import `mercadolibre eq3`.*
+import models.Producto
+import models.Categoria
+import models.Marcas
 
-import controllers.Menucarrito
+import controllers.menuCarrito
 import controllers.agregarCarrrito
-import models.carrito
 
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
 
 import controllers.*
-import models.Cliente
-import models.Usuario
+import models.*
 
 
 fun main(){
-    /*A continucacion se manda a llamar la funcion principal de la Aplicacion*/
 
-
+   // A continucacion se manda a llamar la funcion principal de la Aplicacion
     menu()
-  /* usuariosCliente.forEach{
-       println("Usuario: ${it.key.getUsuario()}")
-       println("Nombre: ${it.value.getNombre()}")
-       println("Apellidos: ${it.value.getApellidos()}")
-       println()
-   }*/
 
 }
 
@@ -56,19 +47,29 @@ fun verificarUsuario(user: String, password: String) {
 }
 
 fun menu(){
-    val productos: MutableMap<Int, Producto> = mutableMapOf()
 
-    println("****************MENU***************")
-    println("* Por favor selecciona una opcion:*")
-    println("*  1- Iniciar sesion:             *")
-    println("*  2- Entrar como invitado:       *")
-    println("*  3- Crea tu cuenta:             *")
-    println("*  4- Salir:                      *")
-    println("***********************************")
+    val opcion: Int?
+    try {
 
-    println("\nIngresa un digito:")
-    val opcion = readLine()!!
-    when (Integer.parseInt(opcion)) {
+
+        println("****************MENU***************")
+        println("* Por favor selecciona una opcion:*")
+        println("*  1- Iniciar sesion:             *")
+        println("*  2- Entrar como invitado:       *")
+        println("*  3- Crea tu cuenta:             *")
+        println("*  4- Salir:                      *")
+        println("***********************************")
+
+        println("\nIngresa un digito:")
+        opcion = readLine()?.toInt()
+
+    } catch(e: NumberFormatException) {
+        println("************************************************************")
+        println("La opcion solo acepta valor numerico,es decir del 1 al 4 ")
+        println("************************************************************")
+        return menu()
+    }
+    when (opcion) {
         1 -> iniciarSesion()
         2 -> menuInicio()
         3 -> registrarNuevoUsuarioCliente()//funcion para crear un nuevo usuario y cliente
@@ -107,24 +108,37 @@ fun validate(input: String): Boolean{
 
 fun menuInicio() {
 
-    val productos: MutableMap<Int, Producto> = mutableMapOf()
+    val productos: MutableMap<Int, models.Producto> = mutableMapOf()
+    val categorias: MutableMap<Int, Categoria> = mutableMapOf()
+    val marca: MutableMap<Int, Marcas> = mutableMapOf()
+    val opcion: Int?
 
-    println("************Bienvenido a Mercado Libre************")
-    println("* Por favor selecciona una opcion:               *")
-    println("*  1- Ver el listado completo de productos:      *")
-    println("*  2- Buscar producto por nombre o coicidencia:  *")
-    println("*  3- Consulta producto por categoria:           *")
-    println("*  4- Consulta producto por marca:               *")
-    println("*  5- Carrito:                                   *")
-    println("*  6- Salir:                                     *")
-    println("**************************************************")
-    val opcion = readLine()
-    when (Integer.parseInt(opcion)) {
+    try {
+
+
+        println("************Bienvenido a Mercado Libre************")
+        println("* Por favor selecciona una opcion:               *")
+        println("*  1- Ver el listado completo de productos:      *")
+        println("*  2- Buscar producto por nombre o coicidencia:  *")
+        println("*  3- Consulta producto por categoria:           *")
+        println("*  4- Consulta producto por marca:               *")
+        println("*  5- Carrito:                                   *")
+        println("*  6- Salir:                                     *")
+        println("**************************************************")
+        opcion = readLine()?.toInt()
+
+    } catch (e: NumberFormatException) {
+        println("************************************************************")
+        println("La opcion solo acepta valor numerico, es decir del 1 al 5 ")
+        println("************************************************************")
+        return menuInicio()
+    }
+    when (opcion) {
         1 -> listadoCompleto(productos)
-        2 -> consultaProductoPorCoicidencia(productos)
-        3 -> consultaProductoPorCategoria(productos)
-        4 -> consultaProductoPorMarca(productos)
-        5 -> Menucarrito()
+        2 -> consultaProductoPorNombre(productos)
+        3 -> consultaProductoPorCategoria(productos, categorias)
+        4 -> consultaProductoPorMarca(productos, marca)
+        5 -> menuCarrito()
         6 -> print("GRACIAS; REGRESA PRONTO")
     }
 }
@@ -211,28 +225,7 @@ fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>) {
     }
 }
 
-fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>) {
-    cargar(productos)
-    var bandera = false
-    print("Ingrese la marca de un producto para ver mas detalles:")
-    val nombreBuscar = readLine()!!.lowercase(Locale.getDefault())
 
-    println("\n**********Productos Encontrados: ********** \n")
-    for ((key, value) in productos) {
-        if(nombreBuscar in value.marca.lowercase(Locale.getDefault())){
-            println("Nombre: ${value.nombre}")
-            println("Marca: ${value.marca}")
-            println("Categoria: ${value.categoria}")
-            println("Precio: $ ${value.precio}")
-            // println("Se econtro el producto")
-            println("************************")
-            bandera =true
-        }
-    }
-    if(bandera == false){
-        println("No se encontro ningun producto de esta Marca")
-    }
-}
 
 fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>) {
     cargar(productos)

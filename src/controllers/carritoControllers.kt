@@ -1,17 +1,15 @@
 package controllers
-
-import `mercadolibre eq3`.Producto
-import `mercadolibre eq3`.cargar
 import listadoCompleto
 import menuInicio
-import models.carrito
+import models.Carrito
+import models.Producto
 import java.util.ArrayList
 
 /* Aqui tengo el Menu Carrito en el cual despligo 6 opciones que puede realizar el usuario
    en la cual puede regresar al Menu Princiapl, agregar articulos al carrito, ver el estado actual del carrito,
    o eliminar aticulos del carrito
  */
-fun Menucarrito() {
+fun menuCarrito() {
     val productos: MutableMap<Int, Producto> = mutableMapOf()
     println("*******************************************+")
     println("*             Menu del carrito             *")
@@ -38,14 +36,14 @@ fun Menucarrito() {
 /*  Aqui agregre estas variables globales para poderlas usar en todas mis siguientes funciones del Carrito
  */
 var listacarrito : ArrayList<String> = arrayListOf<String>()
-var nombre = carrito()
+var nombre = Carrito()
 var Totalprecio : Float = 0.0f
 var Numero: Int = 0
 var subTotal: ArrayList<Float> = arrayListOf<Float>()
 
 /* Aqui se agregan los articulos y su cantidad al carrito
 */
-fun menucarritoagregar() {
+fun menuCarritoAgregar() {
     println("*************************************************")
     println("*  Desea agregar un Articulo ingrese codigo     *")
     println("*************************************************")
@@ -57,7 +55,7 @@ fun menucarritoagregar() {
     var names1 = ""
     var precio1 = 0f
     var stok = 0
-    if((opc2 in 10..29)) {
+    if((opc2 in 10..73)) {
         when (opc2){
             10 -> {
                 names1 = productos[10]!!.nombre
@@ -159,6 +157,11 @@ fun menucarritoagregar() {
                 precio1 = productos[29]!!.precio
                 stok = productos[29]!!.cantidad
             }
+            73 ->{
+                names1 = productos[73]!!.nombre
+                precio1 = productos[73]!!.precio
+                stok = productos[73]!!.cantidad
+            }
         }
     }
     else  {
@@ -241,9 +244,9 @@ fun agregarCarrrito() {
     x = readLine()!!.toString()
 
     if(x == "s") {
-        menucarritoagregar()
+        menuCarritoAgregar()
     }else{
-        Menucarrito()
+        menuCarrito()
     }
 }
 /*   Esta funcion se encarga de eliminar los articulos del carrito que el cliente desear descartar
