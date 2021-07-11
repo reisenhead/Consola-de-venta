@@ -39,8 +39,14 @@ fun cargarUsuariosClientes(usuariosClientes: MutableMap<Usuario, Cliente>): Muta
 }
 
 fun registrarNuevoUsuarioCliente(){
+    fun creandoNuevoUsuario(nuevoUsuario:Usuario, nuevoCliente:Cliente, usuariosCliente: MutableMap<Usuario, Cliente>){
+        println("Creando usuario........")
+        nuevoUsuario.setUsuario(generarUsuario(nuevoCliente.getNombre(),nuevoCliente.getApellidos()))
+        nuevoCliente.mostrarDatosNuevoUsuario(nuevoUsuario,nuevoCliente)
+        usuariosCliente.put(nuevoUsuario,nuevoCliente)
+        menuInicio()
+    }
     var usuariosCliente: MutableMap<Usuario, Cliente> = mutableMapOf()
-
     usuariosCliente =  cargarUsuariosClientes(usuariosCliente)
     println("----------Completa tus datos---------:\n")
     var nombre:String =""
@@ -65,19 +71,45 @@ fun registrarNuevoUsuarioCliente(){
         clave = readLine()!!
     }while(!(validate(clave)))
 
-    if(!isEmailValid(email)){
-        do{
+    /*Inicio instanciando nuevos objetos*/
+     var nuevoUsuario = Usuario(usuariosCliente.size+1, "",clave)
+     var nuevoCliente =Cliente(nuevoUsuario.getIdUsuario(),usuariosCliente.size+1,nombre,apellidos,email)
+    nuevoUsuario.setUsuario(generarUsuario(nuevoCliente.getNombre(),nuevoCliente.getApellidos()))
+    /*Fin instanciando nuevos objetos*/
+
+    if(!isEmailValid(email) || existeCorreo(usuariosCliente, email)) {
+        email = verificacionDelEmailDelNuevoUSuario(usuariosCliente, email)
+        nuevoCliente.setEmail(email)
+        creandoNuevoUsuario(nuevoUsuario, nuevoCliente, usuariosCliente)
+    }else{
+            creandoNuevoUsuario(nuevoUsuario,nuevoCliente,usuariosCliente)
+    }
+   println("Tamanio de la dataClass de los usuarios actualmente: ${usuariosCliente.size}")
+}
+
+fun verificacionDelEmailDelNuevoUSuario(usuariosCliente :MutableMap<Usuario, Cliente>,emailCorrecto:String):String {
+    var email:String = ""
+    email = emailCorrecto
+    if (!isEmailValid(email)) {
+        do {
             println("Usa el formato nombre@ejemplo.com en tu email")
             println("Email:")
             email = readLine()!!
-        }while(!isEmailValid(email))
-        if(existeCorreo(usuariosCliente,email)){
+        } while (!isEmailValid(email))
+        if (existeCorreo(usuariosCliente, email)) {
             println("*** Ya existe una cuenta con: $email.***")
             println("*  Por favor selecciona una opcion:                    *")
             println("*  1- Ingresa a tu cuenta:                             *")
             println("*  2- Usar otro e-mail:                                *")
             var opcion = readLine()!!
-            when(Integer.parseInt(opcion)){
+            while(isInt(opcion)=="" || !rangoOpcionValido(opcion)){
+                println("Solo puede ingresar un valor numerico, es decir: 1 o 2")
+                println("*  Por favor selecciona una opcion:                    *")
+                println("*  1- Ingresa a tu cuenta:                             *")
+                println("*  2- Usar otro e-mail:                                *")
+                opcion = readLine()!!
+            }
+            when (Integer.parseInt(opcion)) {
                 1 -> {
                     iniciarSesion()
                 }
@@ -85,56 +117,51 @@ fun registrarNuevoUsuarioCliente(){
                     do {
                         println("Email:")
                         email = readLine()!!
-                    }while(!(validate(email)))
-                    if(!isEmailValid(email)) {
+                    } while (!(validate(email)))
+                    if (!isEmailValid(email)) {
                         do {
                             println("Usa el formato nombre@ejemplo.com en tu email")
                             println("Email:")
                             email = readLine()!!
                         } while (!isEmailValid(email))
-                        println("Creando usuario........")
-
-                        val nuevoUsuario = Usuario(usuariosCliente.size+1, "",clave)
-                        val nuevoCliente =Cliente(nuevoUsuario.getIdUsuario(),usuariosCliente.size+1,nombre,apellidos,email)
-                        nuevoUsuario.setUsuario(generarUsuario(nuevoCliente.getNombre(),nuevoCliente.getApellidos()))
-                        nuevoCliente.mostrarDatosNuevoUsuario(nuevoUsuario,nuevoCliente)
-                        //nuevoUsuario.mostrarNombreUsuario()
-                        usuariosCliente.put(nuevoUsuario,nuevoCliente)
-                        menuInicio()
-                    }else{
-                        println("Creando usuario........")
-
-                        val nuevoUsuario = Usuario(usuariosCliente.size+1, "",clave)
-                        val nuevoCliente =Cliente(nuevoUsuario.getIdUsuario(),usuariosCliente.size+1,nombre,apellidos,email)
-                        nuevoUsuario.setUsuario(generarUsuario(nuevoCliente.getNombre(),nuevoCliente.getApellidos()))
-                        nuevoCliente.mostrarDatosNuevoUsuario(nuevoUsuario,nuevoCliente)
-                        //nuevoUsuario.mostrarNombreUsuario()
-                        usuariosCliente.put(nuevoUsuario,nuevoCliente)
-                        menuInicio()
-
+                        while (!((validate(email))) || (existeCorreo(usuariosCliente, email)) || !isEmailValid(email)) {
+                            println(
+                                "Revisa tu e-mail. El e-mail no es el formato solicitado" +
+                                        " o ya existe una cuenta con este e-mail:"
+                            )
+                            println("Email:")
+                            email = readLine()!!
+                        }
+                    } else {
+                        if (existeCorreo(usuariosCliente, email)) {
+                            do {
+                                println(
+                                    "Revisa tu e-mail. El e-mail no es el formato solicitado" +
+                                            " o ya existe una cuenta con este e-mail:"
+                                )
+                                println("Email:")
+                                email = readLine()!!
+                            } while (!validate(email) || existeCorreo(usuariosCliente, email));
+                        }
                     }
-
                 }
             }
-
-        }else{
-            println("Creando usuario........")
-
-            val nuevoUsuario = Usuario(usuariosCliente.size+1, "",clave)
-            val nuevoCliente =Cliente(nuevoUsuario.getIdUsuario(),usuariosCliente.size+1,nombre,apellidos,email)
-            nuevoUsuario.setUsuario(generarUsuario(nuevoCliente.getNombre(),nuevoCliente.getApellidos()))
-            nuevoCliente.mostrarDatosNuevoUsuario(nuevoUsuario,nuevoCliente)
-            usuariosCliente.put(nuevoUsuario,nuevoCliente)
-            menuInicio()
         }
-    }else{
-        if(existeCorreo(usuariosCliente,email)){
+    } else {
+        if (existeCorreo(usuariosCliente, email)) {
             println("*** Ya existe una cuenta con: $email.***")
             println("*  Por favor selecciona una opcion:                    *")
             println("*  1- Ingresa a tu cuenta:                             *")
             println("*  2- Usar otro e-mail:                                *")
             var opcion = readLine()!!
-            when(Integer.parseInt(opcion)){
+            while(isInt(opcion)=="" || !rangoOpcionValido(opcion)){
+                println("Solo puede ingresar un valor numerico, es decir: 1 o 2")
+                println("*  Por favor selecciona una opcion:                    *")
+                println("*  1- Ingresa a tu cuenta:                             *")
+                println("*  2- Usar otro e-mail:                                *")
+                opcion = readLine()!!
+            }
+            when (Integer.parseInt(opcion)) {
                 1 -> {
                     iniciarSesion()
                 }
@@ -142,48 +169,63 @@ fun registrarNuevoUsuarioCliente(){
                     do {
                         println("Email:")
                         email = readLine()!!
-                    }while(!(validate(email)))
-                    if(!isEmailValid(email)) {
+                    } while (!(validate(email)))
+                    if (!isEmailValid(email)) {
                         do {
                             println("Usa el formato nombre@ejemplo.com en tu email")
                             println("Email:")
                             email = readLine()!!
                         } while (!isEmailValid(email))
-                        println("Creando usuario........")
-
-                        val nuevoUsuario = Usuario(usuariosCliente.size+1, "",clave)
-                        val nuevoCliente =Cliente(nuevoUsuario.getIdUsuario(),usuariosCliente.size+1,nombre,apellidos,email)
-                        nuevoUsuario.setUsuario(generarUsuario(nuevoCliente.getNombre(),nuevoCliente.getApellidos()))
-                        nuevoCliente.mostrarDatosNuevoUsuario(nuevoUsuario,nuevoCliente)
-                        //nuevoUsuario.mostrarNombreUsuario()
-                        usuariosCliente.put(nuevoUsuario,nuevoCliente)
-                        menuInicio()
-                    }else{
-                        println("Creando usuario........")
-
-                        val nuevoUsuario = Usuario(usuariosCliente.size+1, "",clave)
-                        val nuevoCliente =Cliente(nuevoUsuario.getIdUsuario(),usuariosCliente.size+1,nombre,apellidos,email)
-                        nuevoUsuario.setUsuario(generarUsuario(nuevoCliente.getNombre(),nuevoCliente.getApellidos()))
-                        nuevoCliente.mostrarDatosNuevoUsuario(nuevoUsuario,nuevoCliente)
-                        usuariosCliente.put(nuevoUsuario,nuevoCliente)
-                        menuInicio()
+                        if (existeCorreo(usuariosCliente, email) || !validate(email) || !isEmailValid(email)) {
+                            do {
+                                println(
+                                    "Revisa tu e-mail. El e-mail no es el formato solicitado" +
+                                            " o ya existe una cuenta con este e-mail:"
+                                )
+                                println("Email:")
+                                email = readLine()!!
+                            } while (!validate(email) || existeCorreo(usuariosCliente, email) || !isEmailValid(email));
+                        }
+                    } else {
+                        if (existeCorreo(usuariosCliente, email) || !validate(email) || !isEmailValid(email)) {
+                            do {
+                                println(
+                                    "Revisa tu e-mail. El e-mail no es el formato solicitado" +
+                                            " o ya existe una cuenta con este e-mail:"
+                                )
+                                println("Email:")
+                                email = readLine()!!
+                            } while (!validate(email) || existeCorreo(usuariosCliente, email) || !isEmailValid(email));
+                        }
                     }
                 }
             }
-        }else{
-            println("Creando usuario........")
-
-            val nuevoUsuario = Usuario(usuariosCliente.size+1, "",clave)
-            val nuevoCliente =Cliente(nuevoUsuario.getIdUsuario(),usuariosCliente.size+1,nombre,apellidos,email)
-            nuevoUsuario.setUsuario(generarUsuario(nuevoCliente.getNombre(),nuevoCliente.getApellidos()))
-            nuevoCliente.mostrarDatosNuevoUsuario(nuevoUsuario,nuevoCliente)
-            usuariosCliente.put(nuevoUsuario,nuevoCliente)
-            menuInicio()
         }
     }
-  //  println("Tamanio de la dataClass de los usuarios actualmente: ${usuariosCliente.size}")
-
+    return email
 }
+
+fun isInt(valor:String):Any{
+    var result:Boolean = false
+    try {
+        return  valor.toInt()
+    } catch(e: Exception){
+        return ""
+    }
+}
+fun rangoOpcionValido(valor:String):Boolean{
+    var result:Boolean = false
+    try {
+        if(valor.toInt() in 1..2){
+            result = true
+        }
+    } catch(e: Exception){
+    }
+    return result
+}
+
+
+
 
 fun isEmailValid(email: String): Boolean {
     var isValid = false

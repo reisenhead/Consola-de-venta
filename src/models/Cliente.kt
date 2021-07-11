@@ -60,7 +60,8 @@ class Cliente(idUsuario:Int,idCliente:Int,nombre: String,apellidos: String,email
                   "Nombre: ${cliente.getNombre()}\n" +
                   "Apellidos: ${cliente.getApellidos()}\n" +
                   "Email: ${cliente.getEmail()}\n"+
-                   "Nombre de Usuario: ${usuario.getUsuario()}\n" )
+                   "Nombre de Usuario: ${usuario.getUsuario()}\n"+
+                    "\nBienvenido: ${cliente.getNombre()}\n")
      }
 
 /*    constructor(idCliente: Int,idUsuario: Int) :this(){

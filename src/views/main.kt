@@ -28,6 +28,7 @@ fun verificarUsuario(user: String, password: String) {
 
     if(existeUsuario(usuariosCliente,user) || existeCorreo(usuariosCliente,user) || existeNumeroTelefonico(usuariosCliente,user)){
         if(isContraseniaCorrecta(usuariosCliente,password)){
+            println("Hola! ${obtenerNombreAmostrar(usuariosCliente,user)}")
             menuInicio()
         }else{
             do {
@@ -35,7 +36,7 @@ fun verificarUsuario(user: String, password: String) {
                 println("Clave")
                 val passwordActual = readLine()!!
             }while(!(isContraseniaCorrecta(usuariosCliente,passwordActual)))
-            println("Hola ${obtenerNombreAmostrar(usuariosCliente,user)}")
+            println("Hola! ${obtenerNombreAmostrar(usuariosCliente,user)}")
             menuInicio()
         }
     }else{
@@ -86,7 +87,6 @@ fun iniciarSesion(){
         println("Los campos no pueden estar vacíos \n")
         iniciarSesion()
     }
-    //menuInicio()
 }
 
 fun validate(input: String): Boolean{
@@ -119,7 +119,6 @@ fun menuInicio() {
 }
 
 fun listadoCompleto(productos: MutableMap<Int, Producto>) {
-
     cargar(productos)
 
     println("Deseas ver el listado completo de productos? si/no: ")
@@ -138,7 +137,6 @@ fun listadoCompleto(productos: MutableMap<Int, Producto>) {
             println("No puedo reconocer tu respuesta, Busca el producto por categoria")
         }
     }
-
 }
 
 /*A continuacion la funcion tiene como objetivo buscar las letras o caracteres coicidentes dentro del nombre,
@@ -197,7 +195,6 @@ fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>) {
     if(bandera == false){
         println("No se encontro ningun producto con este nombre")
     }
-
 }
 
 fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>) {
@@ -231,7 +228,6 @@ fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>) {
 
     println("\n**********Productos Encontrados: ********** \n")
     for ((key, value) in productos) {
-
         if(categoriaBuscar in value.categoria.lowercase(Locale.getDefault())){
             //  println("$key = $value")
             println("Nombre: ${value.nombre}")
@@ -246,7 +242,6 @@ fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>) {
     if(bandera == false){
         println("No se encontro ningun producto en esta categoria")
     }
-
 }
 
 fun comprar(productos: MutableMap<Int, Producto>) {
