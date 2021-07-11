@@ -44,7 +44,7 @@ var Totalprecio : Float = 0.0f
 var Numero: Int = 0
 var subTotal: ArrayList<Float> = arrayListOf<Float>()
 
-/*
+/* Aqui se agregan los articulos y su cantidad al carrito
 */
 fun menucarritoagregar() {
     println("*************************************************")
@@ -208,6 +208,8 @@ fun menucarritoagregar() {
 
     impresionCarrito()
 }
+/*  Aqui se muestra que tiene el carrito, aunque todavia no tenga articulos
+* */
 fun impresionCarrito() {
     println("************************************************************************************")
     println("                   Productos agregados al Carrito:                                 *")
@@ -217,8 +219,9 @@ fun impresionCarrito() {
     println("************************************************************************************")
     agregarCarrrito()
 }
-
-
+/*   Aqui se muestra la lista de articulos del carrito ademas de los siguientes datos
+     Cantidad de articulo agregados: $cont          Total a pagar $$Totalprecio
+ */
 fun lista() {
     var cont= listacarrito.count()
 
@@ -229,7 +232,9 @@ fun lista() {
     println("*  Cantidad de articulo agregados: $cont          Total a pagar $$Totalprecio       ")
 
 }
-
+/*   Esta funcion realiza un bucle para agregar articulos o productos al carrito si no lo manda
+    al menu de inicio
+*/
 fun agregarCarrrito() {
     println("*       Deseas agregar un articulo al carrito si o no s/n                          *")
     println("************************************************************************************")
@@ -242,7 +247,8 @@ fun agregarCarrrito() {
         Menucarrito()
     }
 }
-
+/*   Esta funcion se encarga de eliminar los articulos del carrito que el cliente desear descartar
+*/
 fun elimarProducto() {
     println("************************************************************************************")
     println("*                  Productos agregados al Carrito:                                 *")
