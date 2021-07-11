@@ -4,14 +4,14 @@ import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
 import listadoCompleto
 import menuInicio
-import models.carrito
+import models.Carrito
 import java.util.ArrayList
 
 /* Aqui tengo el Menu Carrito en el cual despligo 6 opciones que puede realizar el usuario
    en la cual puede regresar al Menu Princiapl, agregar articulos al carrito, ver el estado actual del carrito,
    o eliminar aticulos del carrito
  */
-fun Menucarrito() {
+fun menuCarrito() {
     val productos: MutableMap<Int, Producto> = mutableMapOf()
     println("*******************************************+")
     println("*             Menu del carrito             *")
@@ -39,7 +39,7 @@ fun Menucarrito() {
 /*  Aqui agregre estas variables globales para poderlas usar en todas mis siguientes funciones del Carrito
  */
 var listacarrito : ArrayList<String> = arrayListOf<String>()
-var nombre = carrito()
+var nombre = Carrito()
 var Totalprecio : Float = 0.0f
 var Numero: Int = 0
 var restaPrecio = 0.0f
@@ -54,7 +54,7 @@ fun menucarritoagregar() {
 
     val productos: MutableMap<Int, Producto> = mutableMapOf()
     cargar(productos)
-    var opcion2 = readLine()!!.toInt()
+    val opcion2 = readLine()!!.toInt()
     val opc2 : Int = opcion2
     var names1 = ""
     var precio1 = 0.0f
@@ -172,21 +172,21 @@ fun menucarritoagregar() {
     println("*************************************************")
     println("*  Ingrese la cantidad de articulos             *")
     println("*************************************************")
-    var opcion3 = readLine()!!.toInt()
+    val opcion3 = readLine()!!.toInt()
 
     opc3.add(precio1)
 
-    var Tot = opcion3*precio1
-    Totalprecio =Totalprecio+Tot
+    val tot = opcion3*precio1
+    Totalprecio += tot
 
 
-    var espacios ="  "
-    var espaciosl ="      "
-    var signo = "$"
-    var disponibles = stok - opcion3
+    val espacios ="  "
+    val espaciosl ="      "
+    val signo = "$"
+    val disponibles = stok - opcion3
 
-    var num = 1
-    Numero = Numero + num
+    val num = 1
+    Numero += num
     nombre.agregarEsp(espacio= espacios)
     nombre.agregarNumero(numero = Numero)
     //nombre.agregarEsp(espacio= espacios)
@@ -206,7 +206,7 @@ fun menucarritoagregar() {
     //nombre.agregarEsp(espacio= espacios)
     nombre.agregarEsp(espacio= espaciosl)
     nombre.agregarSigno(signo = signo)
-    nombre.agregarTotal(total=Tot)
+    nombre.agregarTotal(total=tot)
     listacarrito.add(nombre.imprimirNombre())
     nombre.clear()
 
@@ -227,13 +227,13 @@ fun impresionCarrito() {
      Cantidad de articulo agregados: $cont          Total a pagar $Totalprecio
  */
 fun lista() {
-    var cont= listacarrito.count()
-    var Total = Totalprecio - restaPrecio
+    val cont= listacarrito.count()
+    val totalapagar = Totalprecio - restaPrecio
     listacarrito.forEach{
         println(it)
     }
     println("************************************************************************************")
-    println("*  Cantidad de articulo agregados: $cont         Total a pagar $$Total          ")
+    println("*  Cantidad de articulo agregados: $cont         Total a pagar $$totalapagar          ")
 
 }
 /*   Esta funcion realiza un bucle para agregar articulos o productos al carrito si no lo manda
@@ -243,14 +243,12 @@ fun agregarCarrrito() {
     println("************************************************************************************")
     println("*       Deseas agregar un articulo al carrito si o no s/n                          *")
     println("************************************************************************************")
-    var x : String =  ""
+    val opcionSi =readLine()!!.toString()
 
-        x = readLine()!!.toString()
-
-    if(x == "s") {
+    if(opcionSi == "s") {
         menucarritoagregar()
     }else{
-        Menucarrito()
+        menuCarrito()
     }
 }
 /*   Esta funcion se encarga de eliminar los articulos del carrito que el cliente desear descartar
@@ -265,7 +263,7 @@ fun elimarProducto() {
     println("************************************************************************************")
     println("***************** Que No. de articulo desea eliminar *******************************")
 
-    var opcion4 = readLine()?.toInt()
+    val opcion4 = readLine()?.toInt()
     indicador= opcion4!! -1
     listacarrito.removeAt(indicador)
     restaPrecio = opc3[indicador]
