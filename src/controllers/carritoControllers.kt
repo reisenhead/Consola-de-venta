@@ -1,5 +1,4 @@
 package controllers
-
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
 import listadoCompleto
@@ -19,11 +18,13 @@ fun menuCarrito() {
     println("*    1. Regresar al Menu principal         *")
     println("*    2. Agregar articulos al Carrito       *")
     println("*    3. Ver Articulos en el Carrito        *")
+    println("*    3. Ver Articulo en el Carrito         *")
     println("*    4. Eliminar articulos del Carrito     *")
     println("*    5. Ir a Comprar                       *")
     println("*    6. Salir de Programa                  *")
     println("********************************************")
     println("           Elija una opcion                 ")
+    println("********************************************")
     val opcion = readLine()
     when (Integer.parseInt(opcion)) {
         1 -> menuInicio()
@@ -59,8 +60,10 @@ fun menucarritoagregar() {
     val opcion2 = readLine()!!.toInt()
     val opc2 : Int = opcion2
     var names1 = ""
-    var precio1 = 0f
+    var precio1 = 0.0f
     var stok = 0
+//    var subTotal = arrayListOf<Int>()
+//    subTotal.add(opc2)
     if((opc2 in 10..29)) {
         when (opc2){
             10 -> {
@@ -173,12 +176,9 @@ fun menucarritoagregar() {
     println("*  Ingrese la cantidad de articulos             *")
     println("*************************************************")
     val opcion3 = readLine()!!.toInt()
-
     opc3.add(precio1)
-
     val tot = opcion3*precio1
     Totalprecio += tot
-
     val espacios ="  "
     val espaciosl ="      "
     val signo = "$"
@@ -221,16 +221,16 @@ fun impresionCarrito() {
     agregarCarrrito()
 }
 /*   Aqui se muestra la lista de articulos del carrito ademas de los siguientes datos
-     Cantidad de articulo agregados: $cont          Total a pagar $$Totalprecio
+     Cantidad de articulo agregados: $cont          Total a pagar $Totalprecio
  */
 fun lista() {
     val cont= listacarrito.count()
-    val total = Totalprecio - restaPrecio
+    val totalapagar = Totalprecio - restaPrecio
     listacarrito.forEach{
         println(it)
     }
     println("************************************************************************************")
-    println("*  Cantidad de articulo agregados: $cont          Total a pagar $$total       ")
+     println("*  Cantidad de articulo agregados: $cont         Total a pagar $$totalapagar          ")
 
 }
 /*   Esta funcion realiza un bucle para agregar articulos o productos al carrito si no lo manda
@@ -241,7 +241,6 @@ fun agregarCarrrito() {
     println("*       Deseas agregar un articulo al carrito si o no s/n                          *")
     println("************************************************************************************")
     val opcionSi  = readLine()!!.toString()
-
     if(opcionSi == "s") {
         menucarritoagregar()
     }else{
@@ -250,6 +249,7 @@ fun agregarCarrrito() {
 }
 /*   Esta funcion se encarga de eliminar los articulos del carrito que el cliente desear descartar
 */
+var indicador = 0
 fun elimarProducto() {
     println("************************************************************************************")
     println("*                  Productos agregados al Carrito:                                 *")
@@ -259,11 +259,10 @@ fun elimarProducto() {
     println("************************************************************************************")
     println("***************** Que No. de articulo desea eliminar *******************************")
     val opcion4 = readLine()?.toInt()
-    val indicador: Int = opcion4!! -1
+    indicador= opcion4!! -1
     listacarrito.removeAt(indicador)
     restaPrecio = opc3[indicador]
     println("************************************************************************************")
     println("                   Articulo Eliminado del carrito                                   ")
     impresionCarrito()
-
 }

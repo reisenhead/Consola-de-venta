@@ -1,13 +1,19 @@
 import java.util.*
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
+
 import controllers.menuCarrito
 import controllers.agregarCarrrito
+
+
+import controllers.menuCarrito
+import controllers.agregarCarrrito
+import controllers.*
+
 
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
 
-import controllers.*
 import models.Cliente
 import models.Usuario
 
