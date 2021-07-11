@@ -1,11 +1,8 @@
 import java.util.*
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
-import `mercadolibre eq3`.*
-
-import controllers.Menucarrito
+import controllers.menuCarrito
 import controllers.agregarCarrrito
-import models.carrito
 
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
@@ -124,7 +121,7 @@ fun menuInicio() {
         2 -> consultaProductoPorCoicidencia(productos)
         3 -> consultaProductoPorCategoria(productos)
         4 -> consultaProductoPorMarca(productos)
-        5 -> Menucarrito()
+        5 -> menuCarrito()
         6 -> print("GRACIAS; REGRESA PRONTO")
     }
 }
