@@ -18,13 +18,14 @@ fun Menucarrito() {
     println("*             Menu del carrito             *")
     println("********************************************")
     println("*    1. Regresar al Menu principal         *")
-    println("*    2. Agregar más articulos al Carrito   *")
+    println("*    2. Agregar articulos al Carrito       *")
     println("*    3. Ver Articulo en el Carrito         *")
     println("*    4. Eliminar articulos del Carrito     *")
     println("*    5. Ir a Comprar                       *")
     println("*    6. Salir de Programa                  *")
     println("********************************************")
     println("           Elija una opcion                 ")
+    println("********************************************")
     val opcion = readLine()
     when (Integer.parseInt(opcion)) {
         1 -> menuInicio()
@@ -42,7 +43,8 @@ var listacarrito : ArrayList<String> = arrayListOf<String>()
 var nombre = carrito()
 var Totalprecio : Float = 0.0f
 var Numero: Int = 0
-var subTotal: ArrayList<Float> = arrayListOf<Float>()
+var restaPrecio = 0.0f
+var opc3: ArrayList<Float> = arrayListOf<Float>()
 
 /* Aqui se agregan los articulos y su cantidad al carrito
 */
@@ -56,8 +58,10 @@ fun menucarritoagregar() {
     var opcion2 = readLine()!!.toInt()
     val opc2 : Int = opcion2
     var names1 = ""
-    var precio1 = 0f
+    var precio1 = 0.0f
     var stok = 0
+//    var subTotal = arrayListOf<Int>()
+//    subTotal.add(opc2)
     if((opc2 in 10..29)) {
         when (opc2){
             10 -> {
@@ -170,11 +174,12 @@ fun menucarritoagregar() {
     println("*  Ingrese la cantidad de articulos             *")
     println("*************************************************")
     var opcion3 = readLine()!!.toInt()
-    var opc3 = arrayListOf<Int>()
-    opc3.add(opcion3)
+
+    opc3.add(precio1)
 
     var Tot = opcion3*precio1
-    Totalprecio = Totalprecio+Tot
+    Totalprecio =Totalprecio+Tot
+
 
     var espacios ="  "
     var espaciosl ="      "
@@ -220,26 +225,28 @@ fun impresionCarrito() {
     agregarCarrrito()
 }
 /*   Aqui se muestra la lista de articulos del carrito ademas de los siguientes datos
-     Cantidad de articulo agregados: $cont          Total a pagar $$Totalprecio
+     Cantidad de articulo agregados: $cont          Total a pagar $Totalprecio
  */
 fun lista() {
     var cont= listacarrito.count()
-
+    var Total = Totalprecio - restaPrecio
     listacarrito.forEach{
         println(it)
     }
     println("************************************************************************************")
-    println("*  Cantidad de articulo agregados: $cont          Total a pagar $$Totalprecio       ")
+    println("*  Cantidad de articulo agregados: $cont         Total a pagar $$Total          ")
 
 }
 /*   Esta funcion realiza un bucle para agregar articulos o productos al carrito si no lo manda
     al menu de inicio
 */
 fun agregarCarrrito() {
+    println("************************************************************************************")
     println("*       Deseas agregar un articulo al carrito si o no s/n                          *")
     println("************************************************************************************")
     var x : String =  ""
-    x = readLine()!!.toString()
+
+        x = readLine()!!.toString()
 
     if(x == "s") {
         menucarritoagregar()
@@ -249,6 +256,7 @@ fun agregarCarrrito() {
 }
 /*   Esta funcion se encarga de eliminar los articulos del carrito que el cliente desear descartar
 */
+var indicador = 0
 fun elimarProducto() {
     println("************************************************************************************")
     println("*                  Productos agregados al Carrito:                                 *")
@@ -257,9 +265,11 @@ fun elimarProducto() {
     lista()
     println("************************************************************************************")
     println("***************** Que No. de articulo desea eliminar *******************************")
+
     var opcion4 = readLine()?.toInt()
-    var indicador: Int = opcion4!! -1
+    indicador= opcion4!! -1
     listacarrito.removeAt(indicador)
+    restaPrecio = opc3[indicador]
     println("************************************************************************************")
     println("                   Articulo Eliminado del carrito                                   ")
     impresionCarrito()
