@@ -47,10 +47,10 @@ fun registrarNuevoUsuarioCliente(){
     var usuariosCliente: MutableMap<Usuario, Cliente> = mutableMapOf()
     usuariosCliente =  cargarUsuariosClientes(usuariosCliente)
     println("----------Completa tus datos---------:\n")
-    var nombre=""
-    var apellidos=""
-    var email:String =""
-    var clave:String =""
+    var nombre:String
+    var apellidos:String
+    var email:String
+    var clave:String
     /*Comprobar quer los datos ingresados sean lo mas reales possible (no numericos)*/
     do {
         println("Nombre:")
@@ -71,8 +71,8 @@ fun registrarNuevoUsuarioCliente(){
     }while(!(validate(clave)))
 
     /*Inicio instanciando nuevos objetos*/
-     var nuevoUsuario = Usuario(usuariosCliente.size+1, "",clave)
-     var nuevoCliente =Cliente(nuevoUsuario.getIdUsuario(),usuariosCliente.size+1,nombre,apellidos,email)
+     val nuevoUsuario = Usuario(usuariosCliente.size+1, "",clave)
+     val nuevoCliente =Cliente(nuevoUsuario.getIdUsuario(),usuariosCliente.size+1,nombre,apellidos,email)
     nuevoUsuario.setUsuario(generarUsuario(nuevoCliente.getNombre(),nuevoCliente.getApellidos()))
     /*Fin instanciando nuevos objetos*/
 
@@ -87,7 +87,7 @@ fun registrarNuevoUsuarioCliente(){
 }
 
 fun verificacionDelEmailDelNuevoUSuario(usuariosCliente :MutableMap<Usuario, Cliente>,emailCorrecto:String):String {
-    var email:String = ""
+    var email:String
     email = emailCorrecto
     if (!isEmailValid(email)) {
         do {
@@ -205,7 +205,6 @@ fun verificacionDelEmailDelNuevoUSuario(usuariosCliente :MutableMap<Usuario, Cli
 }
 
 fun isInt(valor:String):Any{
-    var result:Boolean = false
     try {
         return  valor.toInt()
     } catch(e: Exception){
@@ -247,7 +246,7 @@ fun isEmailValid(email: String): Boolean {
 fun existeCorreo(usuariosClientes: MutableMap<Usuario, Cliente>,email:String):Boolean{
     var existe=false
 
-    for ((user, cliente) in usuariosClientes) {
+    for ((_, cliente) in usuariosClientes) {
         if (cliente.getEmail().equals(email)) {
             existe=true
         }
@@ -257,7 +256,7 @@ fun existeCorreo(usuariosClientes: MutableMap<Usuario, Cliente>,email:String):Bo
 
 fun existeNumeroTelefonico(usuariosClientes: MutableMap<Usuario, Cliente>,numeroTelefonico:String):Boolean{
     var existe=false
-    for ((key, value) in usuariosClientes) {
+    for ((_, value) in usuariosClientes) {
         /*println("IdUsuario: $key")
         println("Usuario: ${value.getUsuario()}")*/
         if (value.getNumeroTelefonico().equals(numeroTelefonico)) {

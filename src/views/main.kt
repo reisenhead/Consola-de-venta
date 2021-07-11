@@ -1,11 +1,11 @@
 import java.util.*
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
-import `mercadolibre eq3`.*
+
 
 import controllers.Menucarrito
 import controllers.agregarCarrrito
-import models.carrito
+
 
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
@@ -32,8 +32,6 @@ fun main(){
 fun verificarUsuario(user: String, password: String) {
     var usuariosCliente: MutableMap<Usuario, Cliente> = mutableMapOf()
     usuariosCliente =  cargarUsuariosClientes(usuariosCliente)
-
-    var mensaje: Boolean = false
 
     if(existeUsuario(usuariosCliente,user) || existeCorreo(usuariosCliente,user) || existeNumeroTelefonico(usuariosCliente,user)){
         if(isContraseniaCorrecta(usuariosCliente,password)){
