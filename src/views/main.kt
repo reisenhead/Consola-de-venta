@@ -2,6 +2,7 @@ import java.util.*
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
 import `mercadolibre eq3`.*
+
 import controllers.Menucarrito
 import controllers.agregarCarrrito
 import models.carrito
@@ -10,49 +11,49 @@ import controllers.*
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
 
+import controllers.*
+import models.Cliente
+import models.Usuario
+
 
 fun main(){
-    /*val user = "Bedu"
-    val password = "toor"*/
-
-    //inicializar la clase Producto y cargar datos en ella
-  /*  val productos: MutableMap<Int, Producto> = mutableMapOf()
-
-    cargar(productos)
-    println("")
-    println("   Bienvenid@ a Mercado Libre      ")
-*/
-
     /*A continucacion se manda a llamar la funcion principal de la Aplicacion*/
+
+
     menu()
-    /*var persona = Person()
-    persona.setNombre("Chee")
+  /* usuariosCliente.forEach{
+       println("Usuario: ${it.key.getUsuario()}")
+       println("Nombre: ${it.value.getNombre()}")
+       println("Apellidos: ${it.value.getApellidos()}")
+       println()
+   }*/
 
-    println(persona.getNombre())
-
-    var persona2 = Person("Jose","Calderon Castillo","Masculino",23)
-    println(persona2.getNombre())
-
-    var cliente1 = persona2
-    println("El nombre del primer cliente es: ${cliente1.getNombre()}")*/
-
-    //consultaProductoPorCoicidencia(productos)
-
-    //menuInicio()
-    //   consultaProductoPorNombre(productos)
-    //  consultaProductoPorMarca(productos)
-    // consultaProductoPorCategoria(productos)
-    //listadoCompleto(productos)
 }
 
-fun verificarUsuario(user: String, password: String): Boolean {
+fun verificarUsuario(user: String, password: String) {
+    var usuariosCliente: MutableMap<Usuario, Cliente> = mutableMapOf()
+    usuariosCliente =  cargarUsuariosClientes(usuariosCliente)
+
     var mensaje: Boolean = false
 
-    if(user.contentEquals("Bedu") && password.contentEquals("toor")){
-        mensaje = true
+    if(existeUsuario(usuariosCliente,user) || existeCorreo(usuariosCliente,user) || existeNumeroTelefonico(usuariosCliente,user)){
+        if(isContraseniaCorrecta(usuariosCliente,password)){
+            println("Hola! ${obtenerNombreAmostrar(usuariosCliente,user)}")
+            menuInicio()
+        }else{
+            do {
+                println("Revisa tu clave.\n")
+                println("Clave")
+                val passwordActual = readLine()!!
+            }while(!(isContraseniaCorrecta(usuariosCliente,passwordActual)))
+            println("Hola! ${obtenerNombreAmostrar(usuariosCliente,user)}")
+            menuInicio()
+        }
+    }else{
+        println("Revisa tu e-mail o usuario.\n")
+        iniciarSesion()
     }
 
-    return mensaje;
 }
 
 fun menu(){
@@ -62,7 +63,7 @@ fun menu(){
     println("* Por favor selecciona una opcion:*")
     println("*  1- Iniciar sesion:             *")
     println("*  2- Entrar como invitado:       *")
-    println("*  3- Registrarse:                *")
+    println("*  3- Crea tu cuenta:             *")
     println("*  4- Salir:                      *")
     println("***********************************")
 
@@ -71,44 +72,32 @@ fun menu(){
     when (Integer.parseInt(opcion)) {
         1 -> iniciarSesion()
         2 -> menuInicio()
-        3 -> print("EN MANTENIMIENTO")
+        3 -> registrarNuevoUsuarioCliente()//funcion para crear un nuevo usuario y cliente
         4 -> print("GRACIAS; REGRESA PRONTO")
     }
-
 }
 
 fun iniciarSesion(){
     val productos: MutableMap<Int, Producto> = mutableMapOf()
-    println("----------INICIAR SESION------------:")
-    println("Por favor ingresa tu usuario:")
+    println("----------!Hola! Para seguir, ingresa tu teléfono, e-mail o usuario---------:")
+
+    println("Teléfono, e-mail o usuario:")
     val usuarioActual = readLine()!!
 
-    println("Por favor ingresa tu contrasenia:")
+    println("Clave:")
     val passwordActual = readLine()!!
 
     val userValidated = validate(usuarioActual)
     val passValidate = validate(passwordActual)
 
     if(userValidated&&passValidate) {
-        if (verificarUsuario(usuarioActual, passwordActual)) {
-            println("BIENVENID@ $usuarioActual\n")
-
-            //cargar(productos)
-            //listadoCompleto(productos)
-            //  listadoCompleto(productos)
-            // consultaProducto(productos)
-        } else {
-            println("Usuario o Contrasenia incorrecta\n")
-            iniciarSesion()
-        }
+        verificarUsuario(usuarioActual, passwordActual)
+          //  println("BIENVENID@ $usuarioActual\n")
     }else{
         println("Los campos no pueden estar vacíos \n")
         iniciarSesion()
     }
-
-    menuInicio()
 }
-
 
 fun validate(input: String): Boolean{
     if(input.isEmpty()){
@@ -142,7 +131,6 @@ fun menuInicio() {
 }
 
 fun listadoCompleto(productos: MutableMap<Int, Producto>) {
-
     cargar(productos)
 
     println("Deseas ver el listado completo de productos? si/no: ")
@@ -161,7 +149,9 @@ fun listadoCompleto(productos: MutableMap<Int, Producto>) {
             println("No puedo reconocer tu respuesta, Busca el producto por categoria")
         }
     }
+
     agregarCarrrito()
+
 }
 
 /*A continuacion la funcion tiene como objetivo buscar las letras o caracteres coicidentes dentro del nombre,
@@ -220,7 +210,6 @@ fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>) {
     if(bandera == false){
         println("No se encontro ningun producto con este nombre")
     }
-
 }
 
 fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>) {
@@ -254,7 +243,6 @@ fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>) {
 
     println("\n**********Productos Encontrados: ********** \n")
     for ((key, value) in productos) {
-
         if(categoriaBuscar in value.categoria.lowercase(Locale.getDefault())){
             //  println("$key = $value")
             println("Nombre: ${value.nombre}")
@@ -269,7 +257,6 @@ fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>) {
     if(bandera == false){
         println("No se encontro ningun producto en esta categoria")
     }
-
 }
 
 fun comprar(productos: MutableMap<Int, Producto>) {
