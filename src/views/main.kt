@@ -1,8 +1,12 @@
 import java.util.*
+<<<<<<< HEAD
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
 import controllers.menuCarrito
 import controllers.agregarCarrrito
+=======
+import models.Producto
+>>>>>>> crystian
 import controllers.menuCarrito
 import controllers.agregarCarrrito
 import controllers.*
