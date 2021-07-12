@@ -1,16 +1,12 @@
 import java.util.*
-<<<<<<< HEAD
-import `mercadolibre eq3`.Producto
-import `mercadolibre eq3`.cargar
-import controllers.menuCarrito
-import controllers.agregarCarrrito
-=======
 import models.Producto
->>>>>>> crystian
 import controllers.menuCarrito
 import controllers.agregarCarrrito
 import controllers.*
+
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
+
+
 import models.Cliente
 import models.Usuario
 
