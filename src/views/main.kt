@@ -1,7 +1,5 @@
 import java.util.*
-import `mercadolibre eq3`.Producto
-import `mercadolibre eq3`.cargar
-
+import models.Producto
 import controllers.menuCarrito
 import controllers.agregarCarrrito
 import controllers.*
