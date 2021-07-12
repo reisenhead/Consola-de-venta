@@ -5,7 +5,11 @@ import models.Marcas
 import models.Producto
 import java.util.*
 
+
+
+
 fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>) {
+
     cargar(productos)
     var bandera = false
     print("Ingrese el nombre del  producto para ver mas detalles:")
@@ -33,14 +37,14 @@ fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>) {
 
 }
 
-fun mostrarMarcas(marca: MutableMap<Int, Marcas>) {
+fun mostrarMarcas(marca: MutableMap<Int,Marcas>) {
     cargarMarcas(marca)
 
     for ((_,value) in marca)
         println("Codigo ${value.idMarca} Categoria ${value.descripcion}")
 
 }
-fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>, marca: MutableMap<Int, Marcas>){
+fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>, marca: MutableMap<Int,Marcas>){
 
 
     cargar(productos)

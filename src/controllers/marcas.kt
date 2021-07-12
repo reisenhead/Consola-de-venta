@@ -1,6 +1,5 @@
 package controllers
 
-import models.Categoria
 import models.Marcas
 
 fun cargarMarcas(marca: MutableMap<Int, Marcas>){
