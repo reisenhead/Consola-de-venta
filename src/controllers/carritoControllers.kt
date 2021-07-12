@@ -5,6 +5,8 @@ import menuInicio
 import models.Cliente
 import models.Usuario
 
+
+
 import models.Carrito
 import models.Producto
 
@@ -136,7 +138,7 @@ fun menucarritoagregar() {
 * */
 fun impresionCarrito() {
     println("****************************************************************************************")
-    println("*                           Productos agregados al Carrito:                            *")
+  println("*                           Productos agregados al Carrito:                            *")
     println("****************************************************************************************")
     println("*No.  Cantidad                Articulos                Precio     Disponibles    Total *")
     lista()
