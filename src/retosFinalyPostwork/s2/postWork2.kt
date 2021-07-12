@@ -1,15 +1,8 @@
 package retosFinalyPostwork.s2
 
-import controllers.existeCorreo
-import controllers.isEmailValid
-import controllers.isInt
-import controllers.rangoOpcionValido
-import models.Cliente
-import models.Usuario
+// En nuestro proyecto
 
-// en nuestro proyecto
-
-//PostWork 1
+//PostWork 2
 
 /* operaciones de validacion del login con if, realizando operaciones condicionales, bucles
 fragmento tomado del package controllers archivo ClienteControllers*/
