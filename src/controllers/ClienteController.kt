@@ -415,16 +415,16 @@ fun actualizarDatosCliente(usuario:Usuario,cliente:Cliente){
         }
         cliente.setNombre(nombre)
     }
-    println("Nombre: ${cliente.getApellidos()}")
+    println("Apellidos: ${cliente.getApellidos()}")
     println("Deseas actualizar  tus Apellidos? si/no")
     opcion = readLine()!!
     if("s" in opcion.lowercase(Locale.getDefault())) {
         println("Ingresa tus Apellidos correctamente:")
         var apellidos = readLine()!!
-        do {
+        while (!(validate(apellidos))) {
             println("Apellidos:")
             apellidos = readLine()!!
-        } while (!(validate(apellidos)))
+        }
         cliente.setApellidos(apellidos)
     }
     opcion=""
@@ -478,7 +478,7 @@ fun actualizarDatosCliente(usuario:Usuario,cliente:Cliente){
             println("Por ejemplo: 00000")
             var codigoPostal = readLine()!!
             while (!(validate(codigoPostal)) || !esCodigoPostal(codigoPostal)) {
-                println("Ingrese un numero telefonico valido. CCon el formato: 00000")
+                println("Ingrese un Codigo Postal. Con el formato: 00000")
                 codigoPostal = readLine()!!
             }
             try{
@@ -497,7 +497,7 @@ fun actualizarDatosCliente(usuario:Usuario,cliente:Cliente){
             println("Por ejemplo: 00000")
             var codigoPostal = readLine()!!
             while (!(validate(codigoPostal)) || !esCodigoPostal(codigoPostal)) {
-                println("Ingrese un numero telefonico valido. CCon el formato: 00000")
+                println("Ingrese un Codigo Postal valido. Con el formato: 00000")
                 codigoPostal = readLine()!!
             }
             try{
@@ -510,14 +510,14 @@ fun actualizarDatosCliente(usuario:Usuario,cliente:Cliente){
 
     opcion=""
     if(cliente.getDireccion()==""){
-        println("No tines una dirección registrado por lo que te recomendamos agregar una direccion")
+        println("No tienes una dirección registrado por lo que te recomendamos agregar una direccion")
         println("Deseas agregar una dirección ahora? si/no")
         opcion = readLine()!!
         if ("s" in opcion.lowercase(Locale.getDefault())) {
             println("Ingresa a continuacion tu dirección:")
             var direccion = readLine()!!
             while (!(validate(direccion))) {
-                println("Ingrese un numero telefonico valido. CCon el formato: 00000")
+                println("Ingrese una direccion valida")
                 direccion = readLine()!!
             }
             cliente.setDireccion(direccion)
@@ -528,11 +528,10 @@ fun actualizarDatosCliente(usuario:Usuario,cliente:Cliente){
         println("Deseas actualizar tu número telefónico? si/no")
         opcion = readLine()!!
         if ("s" in opcion.lowercase(Locale.getDefault())) {
-            println("Ingresa a continuacion tu codigo postal a 5 dígitos, en formato numerico")
-            println("Por ejemplo: 00000")
+            println("Ingresa a continuacion tu direccion")
             var direccion = readLine()!!
             while (!(validate(direccion)) || !esCodigoPostal(direccion)) {
-                println("Ingrese un numero telefonico valido. CCon el formato: 00000")
+                println("Ingrese una direccion valida:")
                 direccion = readLine()!!
             }
             cliente.setDireccion(direccion)
