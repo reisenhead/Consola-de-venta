@@ -2,7 +2,7 @@ package `mercadolibre eq3`
 
 
 
-data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
+data class Producto(val nombre: String, val marca:String, val categoria:String, val precio: Float, var cantidad: Int)
 
 
 

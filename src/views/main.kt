@@ -1,4 +1,5 @@
 import java.util.*
+<<<<<<< HEAD
 import `mercadolibre eq3`.Producto
 import `mercadolibre eq3`.cargar
 
@@ -6,11 +7,16 @@ import `mercadolibre eq3`.cargar
 import controllers.Menucarrito
 import controllers.agregarCarrrito
 
+=======
+import models.Producto
+import controllers.menuCarrito
+import controllers.agregarCarrrito
+import controllers.*
+>>>>>>> c995869df9e5f4032927b806f5edf224c661f00d
 
 //data class Producto(val nombre: String, val marca:String, val categoria:String,val precio: Float, val cantidad: Int)
 
 
-import controllers.*
 import models.Cliente
 import models.Usuario
 
@@ -163,7 +169,7 @@ fun menuInicioInvitado() {
         2 -> consultaProductoPorCoicidencia(productos)
         3 -> consultaProductoPorCategoria(productos)
         4 -> consultaProductoPorMarca(productos)
-        5 -> Menucarrito()
+        5 -> menuCarrito()
         6 -> print("GRACIAS; REGRESA PRONTO")
     }
 }

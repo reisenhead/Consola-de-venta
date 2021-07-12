@@ -5,7 +5,6 @@ import menuInicio
 import models.Cliente
 import models.Usuario
 import validate
-import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
