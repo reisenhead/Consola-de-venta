@@ -14,7 +14,7 @@ fun cargarUsuariosClientes(usuariosClientes: MutableMap<Usuario, Cliente>): Muta
     val usuarioBeto = Usuario(1, "Beto","toor")
     val beto =Cliente(usuarioBeto.getIdUsuario(),1,"Beto","Santander","beto.santander@gmail.com")
     usuarioBeto.setUsuario(generarUsuario(beto.getNombre(),beto.getApellidos()))
-   // println("User: ${usuarioBeto.getUsuario()}")
+    // println("User: ${usuarioBeto.getUsuario()}")
     val usuarioJose = Usuario(2, "Chee","toor")
     val jose =Cliente(usuarioJose.getIdUsuario(),2,"Jose J","Calderon C","josechee.unp@gmail.com")
     usuarioJose.setUsuario(generarUsuario(jose.getNombre(),jose.getApellidos()))
@@ -34,7 +34,7 @@ fun cargarUsuariosClientes(usuariosClientes: MutableMap<Usuario, Cliente>): Muta
     * User: SAB2021
     * User: CACJOJ2021
      */
-     return usuariosClientes
+    return usuariosClientes
 }
 
 fun registrarNuevoUsuarioCliente(){
@@ -72,8 +72,8 @@ fun registrarNuevoUsuarioCliente(){
     }while(!(validate(clave)))
 
     /*Inicio instanciando nuevos objetos*/
-     val nuevoUsuario = Usuario(usuariosCliente.size+1, "",clave)
-     val nuevoCliente =Cliente(nuevoUsuario.getIdUsuario(),usuariosCliente.size+1,nombre,apellidos,email)
+    val nuevoUsuario = Usuario(usuariosCliente.size+1, "",clave)
+    val nuevoCliente =Cliente(nuevoUsuario.getIdUsuario(),usuariosCliente.size+1,nombre,apellidos,email)
     nuevoUsuario.setUsuario(generarUsuario(nuevoCliente.getNombre(),nuevoCliente.getApellidos()))
     /*Fin instanciando nuevos objetos*/
 
@@ -82,9 +82,9 @@ fun registrarNuevoUsuarioCliente(){
         nuevoCliente.setEmail(email)
         creandoNuevoUsuario(nuevoUsuario, nuevoCliente, usuariosCliente)
     }else{
-            creandoNuevoUsuario(nuevoUsuario,nuevoCliente,usuariosCliente)
+        creandoNuevoUsuario(nuevoUsuario,nuevoCliente,usuariosCliente)
     }
-   println("Tamanio de la dataClass de los usuarios actualmente: ${usuariosCliente.size}")
+    println("Tamanio de la dataClass de los usuarios actualmente: ${usuariosCliente.size}")
 }
 
 fun verificacionDelEmailDelNuevoUSuario(usuariosCliente :MutableMap<Usuario, Cliente>,emailCorrecto:String):String {
@@ -214,7 +214,6 @@ fun isInt(valor:String):Any{
 }
 /*
 fun isString():Any{
-
 }*/
 
 fun rangoOpcionValido(valor:String):Boolean{
@@ -363,31 +362,31 @@ fun actualizarDatosUsuario(usuario:Usuario,cliente:Cliente){
         println("Clave o Contraseña:")
         claveIngresado = readLine()!!
     }
-        println("Nombre de Usuario: ${usuario.getUsuario()}")
-        println("Deseas cambiar el nombre de usuario? si/no")
-        var opcion = readLine()!!
-        var valor: String
-        if ("s" in opcion.lowercase(Locale.getDefault())) {
+    println("Nombre de Usuario: ${usuario.getUsuario()}")
+    println("Deseas cambiar el nombre de usuario? si/no")
+    var opcion = readLine()!!
+    var valor: String
+    if ("s" in opcion.lowercase(Locale.getDefault())) {
+        println("Ingresa tu nuevo Usuario:")
+        valor = readLine()!!
+        while (!validate(valor)) {
             println("Ingresa tu nuevo Usuario:")
-            valor = readLine()!!
-            while (!validate(valor)) {
-                println("Ingresa tu nuevo Usuario:")
-                val opcion = readLine()!!
-            }
-            usuario.setUsuario(valor)
+            val opcion = readLine()!!
         }
-        println("Deseas cambiar  tu contraseña? si/no")
-        opcion = readLine()!!
-        if ("s" in opcion.lowercase(Locale.getDefault())) {
-            println("Ingresa tu nueva Contraseña:")
-            var pasword = readLine()!!
-            while (!(validate(pasword))) {
-                println("Nueva contraseña:")
-                pasword = readLine()!!
-            }
-            usuario.setContrasenia(pasword)
+        usuario.setUsuario(valor)
+    }
+    println("Deseas cambiar  tu contraseña? si/no")
+    opcion = readLine()!!
+    if ("s" in opcion.lowercase(Locale.getDefault())) {
+        println("Ingresa tu nueva Contraseña:")
+        var pasword = readLine()!!
+        while (!(validate(pasword))) {
+            println("Nueva contraseña:")
+            pasword = readLine()!!
         }
-        datosPersonalesDelCliente(usuario, cliente)
+        usuario.setContrasenia(pasword)
+    }
+    datosPersonalesDelCliente(usuario, cliente)
 
 }
 
@@ -482,7 +481,7 @@ fun actualizarDatosCliente(usuario:Usuario,cliente:Cliente){
                 codigoPostal = readLine()!!
             }
             try{
-            cliente.setCodigoPostal(codigoPostal.toInt())
+                cliente.setCodigoPostal(codigoPostal.toInt())
             }catch (e:Exception){
                 println("Se produjo un error al asignar el codigo postal, lo estamos revisando....")
             }

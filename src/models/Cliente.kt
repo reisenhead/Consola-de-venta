@@ -8,12 +8,10 @@ class SmartWatch(
     price: Float,
     name: String,
     sku: String) : Product( price, name, sku) {
-
     override fun getTotalPrice(quantity: Int): Float {
         return quantity*price
     }
 }
-
 * */
 class Cliente(idUsuario:Int,idCliente:Int,nombre: String,apellidos: String,email:String):Persona(nombre,apellidos) {
 
@@ -56,12 +54,12 @@ class Cliente(idUsuario:Int,idCliente:Int,nombre: String,apellidos: String,email
      }
 
      fun mostrarDatosNuevoUsuario(usuario: Usuario,cliente: Cliente){
-           println("Cliente creado:\n" +
+          println("Cliente creado:\n" +
                   "Nombre: ${cliente.getNombre()}\n" +
                   "Apellidos: ${cliente.getApellidos()}\n" +
                   "Email: ${cliente.getEmail()}\n"+
-                   "Nombre de Usuario: ${usuario.getUsuario()}\n"+
-                    "\nBienvenido: ${cliente.getNombre()}\n")
+                  "Nombre de Usuario: ${usuario.getUsuario()}\n"+
+                  "\nBienvenido: ${cliente.getNombre()}\n")
      }
 
      fun mostrarDatosDelCliente(usuario: Usuario,cliente: Cliente){
@@ -86,42 +84,36 @@ class Cliente(idUsuario:Int,idCliente:Int,nombre: String,apellidos: String,email
         this.idUsuario=idUsuario
     }
     constructor(idCliente: Int,idUsuario: Int) :this(){
-
         this.idCliente=idCliente
         this.idUsuario=idUsuario
     }*/
 
 
 
-    /*constructor(idCliente:Int,idUsuario:Int,nombre:String,apellidos:String,sexo: String,edad: Int,direccion: String) : this(idCliente,idUsuario,nombre,apellidos) {
+     /*constructor(idCliente:Int,idUsuario:Int,nombre:String,apellidos:String,sexo: String,edad: Int,direccion: String) : this(idCliente,idUsuario,nombre,apellidos) {
+     }
+     constructor(idCliente:Int,nombre:String,apellidos:String) : this(idCliente,nombre,apellidos) {
+     }*/
 
-    }
-    constructor(idCliente:Int,nombre:String,apellidos:String) : this(idCliente,nombre,apellidos) {
+     /*constructor(idCliente:Int,idUsuario:Int) : this() {
+     }*/
 
-    }*/
-
-    /*constructor(idCliente:Int,idUsuario:Int) : this() {
-
-    }*/
-
-    /*constructor(idCliente:Int,
-                nombre:String,
-                apellidos:String,
-                sexo: String,
-                edad: Int,
-                direccion: String) : this(idCliente,nombre,apellidos, sexo,edad,direccion) {
-    }*/
+     /*constructor(idCliente:Int,
+                 nombre:String,
+                 apellidos:String,
+                 sexo: String,
+                 edad: Int,
+                 direccion: String) : this(idCliente,nombre,apellidos, sexo,edad,direccion) {
+     }*/
 
 
 
 
 
 
-    /*constructor(nombre:String,apellidos:String,sexo:String,edad:Int,direccion:String) : this(nombre,) {
-
-    }*/
+     /*constructor(nombre:String,apellidos:String,sexo:String,edad:Int,direccion:String) : this(nombre,) {
+     }*/
 
 
 //listado de prodiuto ya comprado
 }
-

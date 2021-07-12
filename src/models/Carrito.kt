@@ -5,7 +5,7 @@ class Carrito{
     var nombreCompleto: String = ""
 
     fun clear() {
-        var nombrecom = nombreCompleto.replace("${nombreCompleto}","")
+        val nombrecom = nombreCompleto.replace("${nombreCompleto}","")
         nombreCompleto =  nombrecom
     }
     fun agregarDisponibles(disponible: Int) {

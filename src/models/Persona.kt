@@ -28,7 +28,7 @@ open class Persona(nombre: String,apellidos:String){
 
 
     fun getNombre(): String {
-     //   println("Llamado desde el getNombre() $nombre")
+        //   println("Llamado desde el getNombre() $nombre")
         return this.nombre
     }
 
@@ -37,7 +37,7 @@ open class Persona(nombre: String,apellidos:String){
     }
 
     fun getApellidos(): String {
-      //  println("Llamado desde el getNombre() $nombre")
+        //  println("Llamado desde el getNombre() $nombre")
         return this.apellidos
     }
 
@@ -46,7 +46,7 @@ open class Persona(nombre: String,apellidos:String){
     }
 
     fun getSexo(): String {
-      //  println("Llamado desde el getSexo() $sexo")
+        //  println("Llamado desde el getSexo() $sexo")
         return this.sexo
     }
 
@@ -64,7 +64,7 @@ open class Persona(nombre: String,apellidos:String){
     }
 
     fun getDireccion(): String {
-      //  println("Llamado desde el getCodigoPostal() $direccion")
+        //  println("Llamado desde el getCodigoPostal() $direccion")
         return this.direccion
     }
 
