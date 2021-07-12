@@ -4,7 +4,7 @@ package test
 import controllers.*
 
 fun main() {
- //   var usuariosCliente: MutableMap<Usuario, Cliente> = mutableMapOf()
+    //   var usuariosCliente: MutableMap<Usuario, Cliente> = mutableMapOf()
 
     //registrarNuevoUsuarioCliente()
 /*
@@ -16,7 +16,7 @@ fun main() {
     }else{
         println(isInt(opcion))
     }*/
-   var cadena:String = "859p1"
+    var cadena:String = "859p1"
     println(esCodigoPostal(cadena))
 
 }
@@ -24,14 +24,9 @@ fun main() {
 fun isInt(valor:String):Any{
     var result:Boolean = false
     try {
-      return  Integer.parseInt(valor)
+        return  Integer.parseInt(valor)
     } catch(e: Exception){
         return ""
     }
 }
-
-
-
-
-
 

@@ -2,6 +2,7 @@ package controllers
 
 import models.Producto
 
+
 fun cargar(productos: MutableMap<Int, Producto>) {
     productos[10] = Producto("Galaxi Z flip                       ", "Samsung", 19, "Tecnologia", 2,     24999.99f, 20)
     productos[11] = Producto("Huawei P40                          ", "Huawei ", 7,"Tecnologia", 2,       5099.909f, 15)
@@ -41,7 +42,7 @@ fun cargar(productos: MutableMap<Int, Producto>) {
     productos[45] = Producto("Croqueta para cachorro              ", "Nupec", 13, "Animales y mascotas", 1,    1590.903f, 16)
     productos[46] = Producto("Croqueta para adulto                ", "Nupec", 13, "Animales y mascotas", 1,    1780.933f, 45)
     productos[47] = Producto("Coqueta para razas pequeñas         ", "Nupec", 13, "Animales y mascotas", 1,    1380.944f, 24)
-    productos[48] = Producto("Croqueta para gatos                 ", "Sport", 22, "Animales y mascotas", 1,    580.9033f, 33)
+    productos[48] = Producto("Croqueta para gatos                 ", "Nupec", 22, "Animales y mascotas", 1,    580.9033f, 33)
     productos[49] = Producto("Caminadora electrica 110v           ", "Sport", 22, "Deportes y fitness", 6,     11999.93f, 13)
     productos[50] = Producto("Caminadora electrica 120v           ", "Sport", 22, "Deportes y fitness", 6,     15980.03f, 10)
     productos[51] = Producto("Bicicleta fija Dynamic              ", "Dynamic", 5, "Deportes y fitness", 6,    15990.03f, 15)
@@ -75,5 +76,4 @@ fun cargar(productos: MutableMap<Int, Producto>) {
     productos[79] = Producto("Guitarra clasica nylon c40m         ", "Yamaha", 25, "Instrumentos musicales", 15,       3199.021f, 45)
     productos[80] = Producto("Paquete de guitarra acustica        ", "Yamaha", 25, "Instrumentos musicales", 15,       3650.022f, 15)
 
-    }
-
+}

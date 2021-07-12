@@ -26,37 +26,34 @@ fun main() {
     clientesMap[jose.getIdCliente()] = jose
 
     //println(existeUsuario(usuariosMap,"CACJOJ2021"))
-  /*  for ((key, value) in usuariosMap) {
-        println("IdUsuario: $key")
-        println("Usuario: ${value.getUsuario()}")
-        var cliente = clientesMap.get(key)
-        if (cliente != null) {
-            println("idCliente: ${cliente.getIdCliente()}")
-            println("Nombre(s) Cliente: ${cliente.getNombre()}")
-            println("Apellido(s) Cliente: ${cliente.getApellidos()}")
-        }
-        println()
-
-    }
-    println("\n")
-
-    /*obtener valores del Map*/
-    val u = usuariosMap.get(2)
-    if (u != null) {
-        println(u.getIdUsuario())
-        println(u.getContrasenia())
-
-    }
-    println(usuariosMap.size)*/
+    /*  for ((key, value) in usuariosMap) {
+          println("IdUsuario: $key")
+          println("Usuario: ${value.getUsuario()}")
+          var cliente = clientesMap.get(key)
+          if (cliente != null) {
+              println("idCliente: ${cliente.getIdCliente()}")
+              println("Nombre(s) Cliente: ${cliente.getNombre()}")
+              println("Apellido(s) Cliente: ${cliente.getApellidos()}")
+          }
+          println()
+      }
+      println("\n")
+      /*obtener valores del Map*/
+      val u = usuariosMap.get(2)
+      if (u != null) {
+          println(u.getIdUsuario())
+          println(u.getContrasenia())
+      }
+      println(usuariosMap.size)*/
 
 
 
-  //  clienteJose.setNombre("chee")
- //   clienteJose.setApellidos("Calderon")
-   /* println(clienteJose.getNombre())
-    println(clienteJose.getApellidos())
-    println(clienteJose.getSexo())
-    println(clienteJose.getIdCliente())*/
+    //  clienteJose.setNombre("chee")
+    //   clienteJose.setApellidos("Calderon")
+    /* println(clienteJose.getNombre())
+     println(clienteJose.getApellidos())
+     println(clienteJose.getSexo())
+     println(clienteJose.getIdCliente())*/
 }
 
 /*
@@ -65,7 +62,6 @@ fun existeUsuario(usuariosMap:MutableMap<Int,Usuario>,user:String):Boolean{
     for ((key, value) in usuariosMap) {
         /*println("IdUsuario: $key")
         println("Usuario: ${value.getUsuario()}")*/
-
         if (value.getUsuario().equals(user)) {
             existe=true
         }
@@ -79,25 +75,20 @@ fun existeCorreo(clientesMap:MutableMap<Int,Cliente>,email:String):Boolean{
     for ((key, value) in clientesMap) {
         /*println("IdUsuario: $key")
         println("Usuario: ${value.getUsuario()}")*/
-
         if (value.getEmail().equals(email)) {
             existe=true
         }
     }
     return existe
 }
-
 fun existeNumeroTelefonico(clientesMap:MutableMap<Int,Cliente>,numeroTelefonico:String):Boolean{
     var existe=false
     for ((key, value) in clientesMap) {
         /*println("IdUsuario: $key")
         println("Usuario: ${value.getUsuario()}")*/
-
         if (value.getNumeroTelefonico().equals(numeroTelefonico)) {
             existe=true
         }
     }
     return existe
 }*/
-
-

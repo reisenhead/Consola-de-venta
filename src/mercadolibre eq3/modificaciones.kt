@@ -1,5 +1,3 @@
-package `mercadolibre eq3`
-
 
 
 /*fun main(){
@@ -66,7 +64,7 @@ fun main(){
 
 fun verificarUsuario(user: String, password: String): Boolean {
     var mensaje:Boolean = false
-
+git remote add origin https://github.com/DanielColoradoCamal/SimulacionMercadoLibre.git
     if(user.contentEquals("Bedu") && password.contentEquals("toor")){
         mensaje = true
     }
