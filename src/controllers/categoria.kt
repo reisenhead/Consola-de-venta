@@ -20,8 +20,4 @@ fun cargarCategorias(categorias: MutableMap<Int, Categoria>){
     categorias[15] = Categoria(15,"Instrumentos musicales")
 }
 
-fun compararCategorias(){
-
-
-}
 

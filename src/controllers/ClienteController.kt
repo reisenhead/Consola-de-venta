@@ -4,9 +4,7 @@ import iniciarSesion
 import menuInicio
 import models.Cliente
 import models.Usuario
-import models.UsuarioDataClass
 import validate
-import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -20,8 +18,8 @@ fun cargarUsuariosClientes(usuariosClientes: MutableMap<Usuario, Cliente>): Muta
     val jose =Cliente(usuarioJose.getIdUsuario(),2,"Jose J","Calderon C","josechee.unp@gmail.com")
     usuarioJose.setUsuario(generarUsuario(jose.getNombre(),jose.getApellidos()))
     //println("USer: ${usuarioJose.getUsuario()}")
-    var usuariosMap: MutableMap<Int, Usuario> = mutableMapOf()
-    var clientesMap: MutableMap<Int,Cliente> = mutableMapOf()
+    val usuariosMap: MutableMap<Int, Usuario> = mutableMapOf()
+    val clientesMap: MutableMap<Int,Cliente> = mutableMapOf()
     usuariosMap[usuarioBeto.getIdUsuario()] = usuarioBeto
     usuariosMap[usuarioJose.getIdUsuario()] = usuarioJose
 

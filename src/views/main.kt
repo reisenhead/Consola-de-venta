@@ -1,16 +1,8 @@
-import models.Producto
-import models.Categoria
-import controllers.menuCarrito
-
 import controllers.*
 import models.*
 
 
 fun main(){
-
-
-
-
 
 
    // A continucacion se manda a llamar la funcion principal de la Aplicacion
