@@ -47,57 +47,69 @@ var opc3: ArrayList<Float> = arrayListOf<Float>()
 
 /* Aqui se agregan los articulos y su cantidad al carrito
 */
-fun menucarritoagregar() {
+
+fun comprobarRangoDeProductos(opcion2:Int): Boolean{
+
+    if (opcion2 in 10..80) {
+        return true
+    }else{
+        return false
+    }
+
+}
+
+fun menuCarritoAgregar() {
     val productos: MutableMap<Int, Producto> = mutableMapOf()
     cargar(productos)
-    val opcion2: Int
-    try {
-        println("************************************************************")
-        println("*       Desea agregar un Articulo ingrese codigo           *")
-        println("************************************************************")
+    var opcion2: Int
+
+
+
+    println("************************************************************")
+    println("*       Desea agregar un Articulo ingrese codigo           *")
+    println("************************************************************")
+    opcion2 = readLine()!!.toInt()
+    while (!comprobarRangoDeProductos(opcion2)) {
+        println("El articulo no existe, ingresa un numero del 10 al 80       ")
         opcion2 = readLine()!!.toInt()
-    }catch(e: NumberFormatException) {
-        println("************************************************************")
-        println("El codigo solo puede ser de valor numerico intenta de nuevo ")
-        println("************************************************************")
-        return menucarritoagregar()
     }
-    val opc2 : Int = opcion2
+
+
+    val opc2: Int = opcion2
 
     var names1 = ""
     var precio1 = 0.0f
     var stok = 0
     val entrada = 1
-    if((opc2 in 10..80)) {
-        when (entrada){
+    if ((opc2 in 10..80)) {
+        when (entrada) {
             1 -> {
                 names1 = productos[opc2]!!.nombre
                 precio1 = productos[opc2]!!.precio
                 stok = productos[opc2]!!.cantidad
             }
         }
-    }
-    else  {
+    } else {
         names1 = "articulo no encontrado"
     }
-    val opcion3 : Int
+    var opcion3: Int?
     try {
         println("****************************************************************")
         println("*           Ingrese la cantidad de articulos                   *")
         println("****************************************************************")
-        opcion3 = readLine()!!.toInt()
-    }catch(e: NumberFormatException) {
+        opcion3 = readLine()?.toInt()
+    } catch (e: NumberFormatException) {
         println("*************************************************************")
         println("La cantidad solo puede ser de valor numerico intenta de nuevo")
         println("*************************************************************")
-        return menucarritoagregar()
+        return menuCarritoAgregar()
     }
     opc3.add(precio1)
 
-    val totalArticulo = opcion3*precio1
+    val totalArticulo = opcion3!! * precio1
     Totalprecio += totalArticulo
-    val espacios ="  "
-    val espaciosl ="      "
+    val espacios = "  "
+    val espaciosl = "      "
     val signo = "$"
     val disponibles = stok - opcion3
 
@@ -105,29 +117,30 @@ fun menucarritoagregar() {
 
     val num = 1
     Numero += num
-    nombre.agregarEsp(espacio= espacios)
+    nombre.agregarEsp(espacio = espacios)
     nombre.agregarNumero(numero = Numero)
-    nombre.agregarEsp(espacio= espaciosl)
+    nombre.agregarEsp(espacio = espaciosl)
     nombre.agregarCantidad(cantidad = opcion3)
-    nombre.agregarEsp(espacio= espaciosl)
-    nombre.agregarNombre(nombre =names1)
-    nombre.agregarEsp(espacio= espacios)
+    nombre.agregarEsp(espacio = espaciosl)
+    nombre.agregarNombre(nombre = names1)
+    nombre.agregarEsp(espacio = espacios)
     nombre.agregarSigno(signo = signo)
     nombre.agregarPrecio(precio = precio1)
 //    nombre.agregarEsp(espacio= espacios)
 //    nombre.agregarEsp(espacio= espacios)
 //    nombre.agregarStok(Stok= stok)
-    nombre.agregarEsp(espacio= espaciosl)
-    nombre.agregarEsp(espacio= espacios)
+    nombre.agregarEsp(espacio = espaciosl)
+    nombre.agregarEsp(espacio = espacios)
     nombre.agregarDisponibles(disponible = disponibles)
-    nombre.agregarEsp(espacio= espaciosl)
+    nombre.agregarEsp(espacio = espaciosl)
     nombre.agregarSigno(signo = signo)
-    nombre.agregarTotal(total=totalArticulo)
+    nombre.agregarTotal(total = totalArticulo)
     listacarrito.add(nombre.imprimirNombre())
     nombre.clear()
 
     impresionCarrito()
 }
+
 /*  Aqui se muestra que tiene el carrito, aunque todavia no tenga articulos
 * */
 fun impresionCarrito() {
@@ -162,7 +175,7 @@ fun agregarCarrrito() {
     val opcionSi =readLine()!!.toString()
 
     if(opcionSi == "s") {
-        menucarritoagregar()
+        menuCarritoAgregar()
     }else{
         menuCarrito()
     }

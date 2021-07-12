@@ -15,10 +15,11 @@ fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>) {
     val nombreBuscar = readLine()!!.lowercase(Locale.getDefault())
 
     println("\n********Todos nuestros productos: ********** \n")
-    for ((_, value) in productos) {
+    for ((key, value) in productos) {
         if( value.nombre.lowercase(Locale.getDefault()).contains(nombreBuscar) ||
             value.marca.lowercase(Locale.getDefault()).contains(nombreBuscar) ||
             value.categoria.lowercase(Locale.getDefault()).contains(nombreBuscar)){
+            println("Codigo: $key")
             println("Nombre: ${value.nombre}")
             println("Marca: ${value.marca}")
             println("Categoria: ${value.categoria}")

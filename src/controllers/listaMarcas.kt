@@ -30,4 +30,3 @@ fun cargarMarcas(marca: MutableMap<Int, Marcas>){
     marca[24] = Marcas(24,"T-fal")
     marca[25] = Marcas(25,"Yamaha")
 }
-
