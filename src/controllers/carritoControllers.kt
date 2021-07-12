@@ -1,14 +1,11 @@
 package controllers
 import listadoCompleto
 import menuInicio
-<<<<<<< HEAD
 import models.Cliente
 import models.Usuario
-import models.carrito
-=======
 import models.Carrito
 import models.Producto
->>>>>>> c995869df9e5f4032927b806f5edf224c661f00d
+
 import java.util.ArrayList
 
 /* Aqui tengo el Menu Carrito en el cual despligo 6 opciones que puede realizar el usuario
@@ -137,7 +134,7 @@ fun menucarritoagregar() {
 * */
 fun impresionCarrito() {
     println("****************************************************************************************")
-    println("*                           Productos agregados al Carrito:                            *")
+  println("*                           Productos agregados al Carrito:                            *")
     println("****************************************************************************************")
     println("*No.  Cantidad                Articulos                Precio     Disponibles    Total *")
     lista()
