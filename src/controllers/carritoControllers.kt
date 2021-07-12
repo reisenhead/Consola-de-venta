@@ -1,9 +1,4 @@
 package controllers
-<<<<<<< HEAD
-import `mercadolibre eq3`.Producto
-import `mercadolibre eq3`.cargar
-=======
->>>>>>> crystian
 import listadoCompleto
 import menuInicio
 import models.Carrito
@@ -21,7 +16,6 @@ fun menuCarrito() {
     println("********************************************")
     println("*    1. Regresar al Menu principal         *")
     println("*    2. Agregar articulos al Carrito       *")
-    println("*    3. Ver Articulos en el Carrito        *")
     println("*    3. Ver Articulo en el Carrito         *")
     println("*    4. Eliminar articulos del Carrito     *")
     println("*    5. Ir a Comprar                       *")
@@ -36,16 +30,8 @@ fun menuCarrito() {
         3 -> impresionCarrito()
         4 -> elimarProducto()
         5 -> println(" Comprando  Articulos  ")
-<<<<<<< HEAD
-        6 ->{
-            println("************************************************************************************")
-            println("*            GRACIAS POR SU VISITA; REGRESA PRONTO A MERCADO LIBRE                 *")
-            println("************************************************************************************")
-            }
-=======
         6 -> print("***    GRACIAS POR SU VISITA; REGRESA PRONTO A MERCADO LIBRE   ***")
 
->>>>>>> crystian
     }
 }
 /*  Aqui agregre estas variables globales para poderlas usar en todas mis siguientes funciones del Carrito
@@ -54,12 +40,8 @@ var listacarrito : ArrayList<String> = arrayListOf<String>()
 var nombre = Carrito()
 var Totalprecio : Float = 0.000f
 var Numero: Int = 0
-<<<<<<< HEAD
-=======
 var restaPrecio = 0.0000f
->>>>>>> crystian
 var opc3: ArrayList<Float> = arrayListOf<Float>()
-var restaPrecio = 0.0f
 
 
 /* Aqui se agregan los articulos y su cantidad al carrito
@@ -84,17 +66,10 @@ fun menucarritoagregar() {
     var names1 = ""
     var precio1 = 0.0f
     var stok = 0
-<<<<<<< HEAD
-    val Entrada = 1
-    if((opc2 in 10..73)) {
-        when (Entrada){
-            11 -> {
-=======
     val entrada = 1
     if((opc2 in 10..80)) {
         when (entrada){
             1 -> {
->>>>>>> crystian
                 names1 = productos[opc2]!!.nombre
                 precio1 = productos[opc2]!!.precio
                 stok = productos[opc2]!!.cantidad
@@ -104,21 +79,11 @@ fun menucarritoagregar() {
     else  {
         names1 = "articulo no encontrado"
     }
-<<<<<<< HEAD
-
-    println("*************************************************")
-    println("*  Ingrese la cantidad de articulos             *")
-    println("*************************************************")
-    val opcion3 = readLine()!!.toInt()
-    opc3.add(precio1)
-    val tot = opcion3*precio1
-    Totalprecio += tot
-=======
     val opcion3 : Int
     try {
-    println("************************************************************")
-    println("*           Ingrese la cantidad de articulos               *")
-    println("************************************************************")
+    println("****************************************************************")
+    println("*           Ingrese la cantidad de articulos                   *")
+    println("****************************************************************")
     opcion3 = readLine()!!.toInt()
     }catch(e: NumberFormatException) {
         println("*************************************************************")
@@ -130,7 +95,6 @@ fun menucarritoagregar() {
 
     val totalArticulo = opcion3*precio1
     Totalprecio += totalArticulo
->>>>>>> crystian
     val espacios ="  "
     val espaciosl ="      "
     val signo = "$"
@@ -183,31 +147,19 @@ fun lista() {
     listacarrito.forEach{
         println(it)
     }
-<<<<<<< HEAD
-    println("************************************************************************************")
-     println("*  Cantidad de articulo agregados: $cont         Total a pagar $$totalapagar          ")
-=======
     println("****************************************************************************************")
     println("*  Cantidad de articulo agregados: $cont         Total a pagar $$totalapagar          ")
->>>>>>> crystian
 
 }
 /*   Esta funcion realiza un bucle para agregar articulos o productos al carrito si no lo manda
     al menu de inicio
 */
 fun agregarCarrrito() {
-<<<<<<< HEAD
-    println("************************************************************************************")
-    println("*       Deseas agregar un articulo al carrito si o no s/n                          *")
-    println("************************************************************************************")
-    val opcionSi  = readLine()!!.toString()
-=======
     println("****************************************************************************************")
     println("*          Deseas agregar un articulo al carrito si o no  (Escriba s/n)                *")
     println("****************************************************************************************")
     val opcionSi =readLine()!!.toString()
 
->>>>>>> crystian
     if(opcionSi == "s") {
         menucarritoagregar()
     }else{
@@ -223,13 +175,8 @@ fun elimarProducto() {
     println("****************************************************************************************")
     println("*No.  Cantidad                Articulos                Precio     Disponibles    Total *")
     lista()
-<<<<<<< HEAD
-    println("************************************************************************************")
-    println("***************** Que No. de articulo desea eliminar *******************************")
-=======
     println("****************************************************************************************")
 
->>>>>>> crystian
     val opcion4 = readLine()?.toInt()
     indicador= opcion4!! -1
     listacarrito.removeAt(indicador)
@@ -237,4 +184,5 @@ fun elimarProducto() {
     println("**************************************************************************************")
     println("                   Articulo Eliminado del carrito                                     ")
     impresionCarrito()
+
 }
