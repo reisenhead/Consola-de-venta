@@ -231,9 +231,9 @@ fun lista() {
 */
 fun agregarCarrrito(cliente2:Cliente) {
     cliente=cliente2
-    println("****************************************************************************************")
-    println("*          Deseas agregar un articulo al carrito si o no  (Escriba s/n)                *")
-    println("****************************************************************************************")
+    println("********************************************************************************************")
+    println(" Desea agregar un articulo al carrito escriba (s) para si o cualquier letra para continuar  ")
+    println("********************************************************************************************")
     val opcionSi =readLine()!!.toString()
 
     if(opcionSi == "s") {
@@ -252,7 +252,8 @@ fun elimarProducto() {
     println("*No.  Cantidad                Articulos                Precio     Disponibles    Total *")
     lista()
     println("****************************************************************************************")
-
+    println("*                 Elija el (No.) del Articulo a eliminar                               *")
+    println("****************************************************************************************")
     val opcion4 = readLine()?.toInt()
     indicador= opcion4!! -1
     listacarrito.removeAt(indicador)
