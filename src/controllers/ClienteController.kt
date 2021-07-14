@@ -3,18 +3,26 @@ package controllers
 import iniciarSesion
 import menuInicio
 import models.Cliente
+import models.Producto
+import models.Tarjeta
 import models.Usuario
 import validate
 import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+import kotlin.collections.ArrayList
 
 
 fun cargarUsuariosClientes(usuariosClientes: MutableMap<Usuario, Cliente>): MutableMap<Usuario, Cliente> {
     val usuarioBeto = Usuario(1, "Beto","toor")
     val beto =Cliente(usuarioBeto.getIdUsuario(),1,"Beto","Santander","beto.santander@gmail.com")
     usuarioBeto.setUsuario(generarUsuario(beto.getNombre(),beto.getApellidos()))
+
     // println("User: ${usuarioBeto.getUsuario()}")
+
+    //ArrayList<Float> = arrayListOf<Float>()
+
+
     val usuarioJose = Usuario(2, "Chee","toor")
     val jose =Cliente(usuarioJose.getIdUsuario(),2,"Jose J","Calderon C","josechee.unp@gmail.com")
     usuarioJose.setUsuario(generarUsuario(jose.getNombre(),jose.getApellidos()))
@@ -29,12 +37,18 @@ fun cargarUsuariosClientes(usuariosClientes: MutableMap<Usuario, Cliente>): Muta
 
     usuariosClientes.put(usuarioBeto,beto)
     usuariosClientes.put(usuarioJose,jose)
-
     /*
     * User: SAB2021
     * User: CACJOJ2021
      */
     return usuariosClientes
+}
+
+fun obtenerTarjetasActuales():ArrayList<Tarjeta> {
+    var tarjetasDeLosClientes: ArrayList<Tarjeta> = arrayListOf<Tarjeta>()
+    val tarjetaDeCreditoBeto = Tarjeta(1, 1, "Santander",1234567891234567, "Beto Santander", "04/24", 123)
+    tarjetasDeLosClientes.add(tarjetaDeCreditoBeto)
+    return tarjetasDeLosClientes
 }
 
 fun registrarNuevoUsuarioCliente(){
@@ -73,7 +87,8 @@ fun registrarNuevoUsuarioCliente(){
 
     /*Inicio instanciando nuevos objetos*/
     val nuevoUsuario = Usuario(usuariosCliente.size+1, "",clave)
-    val nuevoCliente =Cliente(nuevoUsuario.getIdUsuario(),usuariosCliente.size+1,nombre,apellidos,email)
+    println("INCREMENTANDO EL SIZE DE usuariosCliente.size+1: ${usuariosCliente.size+1}")
+    val nuevoCliente =Cliente(usuariosCliente.size+1,usuariosCliente.size+1,nombre,apellidos,email)
     nuevoUsuario.setUsuario(generarUsuario(nuevoCliente.getNombre(),nuevoCliente.getApellidos()))
     /*Fin instanciando nuevos objetos*/
 

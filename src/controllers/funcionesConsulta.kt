@@ -1,5 +1,6 @@
 package controllers
 import models.Categoria
+import models.Cliente
 import models.Marcas
 import models.Producto
 import java.util.*
@@ -7,7 +8,7 @@ import java.util.*
 
 
 
-fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>, marca: MutableMap<Int,Marcas>,categorias: MutableMap<Int, Categoria>) {
+fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>, marca: MutableMap<Int,Marcas>,categorias: MutableMap<Int, Categoria>,cliente:Cliente) {
 
     cargar(productos)
     cargarMarcas(marca)
@@ -35,12 +36,12 @@ fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>, marca: Mutab
                 println("************************")
 
             }
-        agregarCarrrito()
+        agregarCarrrito(cliente)
 
 
     }else {
         println("El campo no puede estar vacio")
-        return consultaProductoPorNombre(productos ,marca,categorias)
+        return consultaProductoPorNombre(productos ,marca,categorias,cliente)
     }
 
 }
@@ -52,7 +53,7 @@ fun mostrarMarcas(marca: MutableMap<Int, Marcas>) {
         println("Codigo ${value.idMarca} Categoria ${value.descripcion}")
 
 }
-fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>, marca: MutableMap<Int,Marcas>){
+fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>, marca: MutableMap<Int,Marcas>,cliente:Cliente){
 
 
     cargar(productos)
@@ -67,7 +68,7 @@ fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>, marca: Mutabl
         println("************************************************************")
         println("El codigo solo puede ser de valor numerico intenta de nuevo ")
         println("************************************************************")
-        return consultaProductoPorMarca(productos,marca)
+        return consultaProductoPorMarca(productos,marca,cliente)
     }
 
 
@@ -89,12 +90,12 @@ fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>, marca: Mutabl
                     println("Precio: $ ${value.precio}")
                     println("************************")
                 }
-            agregarCarrrito()
+            agregarCarrrito(cliente)
 
 
         } else {
             println("El campo no puede estar vacio")
-            return consultaProductoPorMarca(productos, marca)
+            return consultaProductoPorMarca(productos, marca,cliente)
         }
 
 }
@@ -108,7 +109,7 @@ fun mostrarCategorias(categorias: MutableMap<Int, Categoria>) {
 
 }
 
-fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>, categorias: MutableMap<Int, Categoria>){
+fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>, categorias: MutableMap<Int, Categoria>,cliente:Cliente){
 
 
     cargar(productos)
@@ -123,7 +124,7 @@ fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>, categoria
         println("************************************************************")
         println("El codigo solo puede ser de valor numerico intenta de nuevo ")
         println("************************************************************")
-        return consultaProductoPorCategoria(productos, categorias)
+        return consultaProductoPorCategoria(productos, categorias,cliente)
     }
 
 
@@ -147,18 +148,18 @@ fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>, categoria
                     println("************************")
                 }
 
-            agregarCarrrito()
+            agregarCarrrito(cliente)
 
 
         } else {
             println("El campo no puede estar vacio")
-            return consultaProductoPorCategoria(productos, categorias)
+            return consultaProductoPorCategoria(productos, categorias,cliente)
         }
 
 }
 
 
-fun listadoCompleto(productos: MutableMap<Int, Producto>, categorias: MutableMap<Int, Categoria>) {
+fun listadoCompleto(productos: MutableMap<Int, Producto>, categorias: MutableMap<Int, Categoria>,cliente: Cliente) {
 
     cargar(productos)
     cargarCategorias(categorias)
@@ -186,6 +187,6 @@ fun listadoCompleto(productos: MutableMap<Int, Producto>, categorias: MutableMap
             println("No puedo reconocer tu respuesta, Busca el producto por categoria")
         }
     }
-    agregarCarrrito()
+    agregarCarrrito(cliente)
 
 }

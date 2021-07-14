@@ -150,11 +150,11 @@ fun menuInicio(usuario: Usuario,cliente: Cliente) {
     }
     when (opcion) {
         0 -> datosPersonalesDelCliente(usuario,cliente)
-        1 -> listadoCompleto(productos, categorias)
-        2 -> consultaProductoPorNombre(productos,marca,categorias)
-        3 -> consultaProductoPorCategoria(productos, categorias)
-        4 -> consultaProductoPorMarca(productos, marca)
-        5 -> menuCarrito()
+        1 -> listadoCompleto(productos, categorias,cliente)
+        2 -> consultaProductoPorNombre(productos,marca,categorias,cliente)
+        3 -> consultaProductoPorCategoria(productos, categorias,cliente)
+        4 -> consultaProductoPorMarca(productos, marca,cliente)
+        5 -> menuCarrito(usuario,cliente)
         6 -> print("GRACIAS; REGRESA PRONTO")
     }
 }
@@ -164,7 +164,8 @@ fun menuInicioInvitado() {
     val categorias: MutableMap<Int, Categoria> = mutableMapOf()
     val marca: MutableMap<Int, Marcas> = mutableMapOf()
     val opcion: Int?
-
+    var clienteInvitado=Cliente(0,0,"","","email")
+    var usuarioInvitado=Usuario(0,"root","root")
     try {
 
         println("************Bienvenido a Mercado Libre************")
@@ -187,14 +188,33 @@ fun menuInicioInvitado() {
         return menuInicio(Usuario(1,"",""), Cliente(0,0,"","",""))
     }
     when (opcion) {
-        1 -> listadoCompleto(productos, categorias)
-        2 -> consultaProductoPorNombre(productos,marca,categorias)
-        3 -> consultaProductoPorCategoria(productos, categorias)
-        4 -> consultaProductoPorMarca(productos, marca)
-        5 -> menuCarritoInvitado()
+        1 -> listadoCompleto(productos, categorias,clienteInvitado)
+        2 -> consultaProductoPorNombre(productos,marca,categorias,clienteInvitado)
+        3 -> consultaProductoPorCategoria(productos, categorias,clienteInvitado)
+        4 -> consultaProductoPorMarca(productos, marca,clienteInvitado)
+        5 -> iniciarOCrearUsuarioParaComprar()
         6 -> print("GRACIAS; REGRESA PRONTO")
     }
 }
 
+fun iniciarOCrearUsuarioParaComprar(){
+    println("Para comprar o agregar productos al carrito debes crear una cuenta o inciar sesion")
+    println("***************************************************")
+    println("* A continuacion seleccione lo que desee realizar:*")
+    println("*  1- Crear una cuenta                            *")
+    println("*  2- Iniciar Sesion                               *")
+    println("***************************************************")
+    println("\nIngrese a continuacion una opcion:")
+    var opcion:String= readLine()!!
+    while (!validate(opcion) || isInt(opcion) == "" || !rangoOpcionValido(opcion)){
+        println("Ingresa una opcion Valida.")
+        println("Ingrese 1 para crear una cuenta o ingrese 2 para ingresar a su cuenta:")
+        opcion = readLine()!!
+    }
+    when (Integer.parseInt(opcion)){
+        1 -> registrarNuevoUsuarioCliente()
+        2 -> iniciarSesion()
+    }
 
+}
 

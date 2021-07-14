@@ -1,4 +1,5 @@
 package controllers
+import iniciarOCrearUsuarioParaComprar
 import menuInicio
 import menuInicioInvitado
 
@@ -19,7 +20,9 @@ import java.util.ArrayList
    en la cual puede regresar al Menu Princiapl, agregar articulos al carrito, ver el estado actual del carrito,
    o eliminar aticulos del carrito
  */
-fun menuCarrito() {
+fun menuCarrito(usuario2:Usuario,cliente2:Cliente) {
+    usuario = usuario2
+    cliente = cliente2
     val productos: MutableMap<Int, Producto> = mutableMapOf()
     val categorias: MutableMap<Int, Categoria> = mutableMapOf()
     println("*******************************************+")
@@ -36,11 +39,19 @@ fun menuCarrito() {
     println("********************************************")
     val opcion = readLine()
     when (Integer.parseInt(opcion)) {
-        1 -> menuInicio(Usuario(1,"",""), Cliente(0,0,"","",""))
-        2 -> listadoCompleto(productos,categorias)
+        1 -> menuInicio(usuario, cliente)
+        2 -> listadoCompleto(productos,categorias,cliente)
         3 -> impresionCarrito()
         4 -> elimarProducto()
-        5 -> println(" Comprando  Articulos  ")
+        5 -> {
+            if(cliente.getNombre()!=""){
+                var pago = Pago(1,cliente,listacarrito,Totalprecio,0)
+                var pagoController = menuPagoInciandoPago(pago,cliente)
+            }else{
+                iniciarOCrearUsuarioParaComprar()
+            }
+
+        }//pago
         6 -> print("***    GRACIAS POR SU VISITA; REGRESA PRONTO A MERCADO LIBRE   ***")
 
     }
@@ -65,25 +76,32 @@ fun menuCarritoInvitado() {
     println("********************************************")
     val opcion = readLine()
     when (Integer.parseInt(opcion)) {
-        1 -> menuInicioInvitado()
-        2 -> listadoCompleto(productos,categorias)
+        1 -> menuInicio(usuario,cliente)
+        2 -> listadoCompleto(productos,categorias,cliente)
         3 -> impresionCarrito()
         4 -> elimarProducto()
-        5 -> println(" Comprando  Articulos  ")
+        5 -> {
+            if(cliente.getNombre()!=""){
+                var pago = Pago(1,cliente,listacarrito,Totalprecio,0)
+                var pagoController = menuPagoInciandoPago(pago,cliente)
+            }else{
+                iniciarOCrearUsuarioParaComprar()
+            }
+        }
         6 -> print("***    GRACIAS POR SU VISITA; REGRESA PRONTO A MERCADO LIBRE   ***")
-
+////////
     }
 }
 /*  Aqui agregre estas variables globales para poderlas usar en todas mis siguientes funciones del Carrito
  */
-var listacarrito : ArrayList<String> = arrayListOf<String>()
+var listacarrito : ArrayList<String> = arrayListOf<String>()/*LISTA QUE CONTIENE  TODOS LOS PRODUCTOS (DATOS DEL CARRITO)*/
 var nombre = Carrito()
 var Totalprecio : Float = 0.000f
 var Numero: Int = 0
 var restaPrecio = 0.0000f
 var opc3: ArrayList<Float> = arrayListOf<Float>()
-
-
+var cliente=Cliente(0,0,"","","email")
+var usuario=Usuario(0,"root","root")
 /* Aqui se agregan los articulos y su cantidad al carrito
 */
 
@@ -174,6 +192,10 @@ fun menuCarritoAgregar() {
     nombre.agregarEsp(espacio = espaciosl)
     nombre.agregarSigno(signo = signo)
     nombre.agregarTotal(total = totalArticulo)
+    /*
+    *
+    * AGREGANDO PRODUCTO AL CARRITO
+    * */
     listacarrito.add(nombre.imprimirNombre())
     nombre.clear()
 
@@ -186,10 +208,10 @@ fun impresionCarrito() {
     println("****************************************************************************************")
     println("*                           Productos agregados al Carrito:                            *")
     println("****************************************************************************************")
-    println("*No.  Cantidad                Articulos                Precio     Disponibles    Total *")
+    println("*No.  Cantidad                Articulos                Precio     Disponibles    Total *")//*******///
     lista()
     println("****************************************************************************************")
-    agregarCarrrito()
+    agregarCarrrito(cliente)
 }
 /*   Aqui se muestra la lista de articulos del carrito ademas de los siguientes datos
      Cantidad de articulo agregados: $cont          Total a pagar $Totalprecio
@@ -202,12 +224,13 @@ fun lista() {
     }
     println("****************************************************************************************")
     println("*  Cantidad de articulo agregados: $cont         Total a pagar $$totalapagar          ")
-
+    ///"ID","NOMBRE","STOCK","",""
 }
 /*   Esta funcion realiza un bucle para agregar articulos o productos al carrito si no lo manda
     al menu de inicio
 */
-fun agregarCarrrito() {
+fun agregarCarrrito(cliente2:Cliente) {
+    cliente=cliente2
     println("****************************************************************************************")
     println("*          Deseas agregar un articulo al carrito si o no  (Escriba s/n)                *")
     println("****************************************************************************************")
@@ -216,7 +239,7 @@ fun agregarCarrrito() {
     if(opcionSi == "s") {
         menuCarritoAgregar()
     }else{
-        menuCarrito()
+        menuCarrito(usuario,cliente)
     }
 }
 /*   Esta funcion se encarga de eliminar los articulos del carrito que el cliente desear descartar
