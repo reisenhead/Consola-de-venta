@@ -50,7 +50,7 @@ fun mostrarMarcas(marca: MutableMap<Int, Marcas>) {
     cargarMarcas(marca)
 
     for ((_,value) in marca)
-        println("Codigo ${value.idMarca} Categoria ${value.descripcion}")
+        println("Codigo ${value.idMarca} Marca ${value.descripcion}")
 
 }
 fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>, marca: MutableMap<Int,Marcas>,cliente:Cliente){
@@ -180,11 +180,11 @@ fun listadoCompleto(productos: MutableMap<Int, Producto>, categorias: MutableMap
         }
         "n" -> {
             println("Tenemos estas categorias para ti: ")
-
-            mostrarCategorias(categorias)
+            consultaProductoPorCategoria(productos,categorias,cliente)
         }
         else -> {
-            println("No puedo reconocer tu respuesta, Busca el producto por categoria")
+            println("Tu respuesta no fue correcta, escribe s o n:")
+            return listadoCompleto(productos,categorias,cliente)
         }
     }
     agregarCarrrito(cliente)

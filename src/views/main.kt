@@ -146,7 +146,7 @@ fun menuInicio(usuario: Usuario,cliente: Cliente) {
         println("************************************************************")
         println("La opcion solo acepta valor numerico, es decir del 0 al 6 ")
         println("************************************************************")
-        return menuInicio(Usuario(1,"",""), Cliente(0,0,"","",""))
+        return menuInicio(usuario, cliente)
     }
     when (opcion) {
         0 -> datosPersonalesDelCliente(usuario,cliente)
