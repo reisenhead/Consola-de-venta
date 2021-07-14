@@ -42,7 +42,7 @@ fun cargar(productos: MutableMap<Int, Producto>) {
     productos[45] = Producto("Croqueta para cachorro              ", "Nupec", 13, "Animales y mascotas", 1,    1590.903f, 16)
     productos[46] = Producto("Croqueta para adulto                ", "Nupec", 13, "Animales y mascotas", 1,    1780.933f, 45)
     productos[47] = Producto("Coqueta para razas pequeñas         ", "Nupec", 13, "Animales y mascotas", 1,    1380.944f, 24)
-    productos[48] = Producto("Croqueta para gatos                 ", "Sport", 22, "Animales y mascotas", 1,    580.9033f, 33)
+    productos[48] = Producto("Croqueta para gatos                 ", "Nupec", 22, "Animales y mascotas", 1,    580.9033f, 33)
     productos[49] = Producto("Caminadora electrica 110v           ", "Sport", 22, "Deportes y fitness", 6,     11999.93f, 13)
     productos[50] = Producto("Caminadora electrica 120v           ", "Sport", 22, "Deportes y fitness", 6,     15980.03f, 10)
     productos[51] = Producto("Bicicleta fija Dynamic              ", "Dynamic", 5, "Deportes y fitness", 6,    15990.03f, 15)

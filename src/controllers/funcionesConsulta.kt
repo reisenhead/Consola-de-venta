@@ -1,5 +1,6 @@
 package controllers
 import models.Categoria
+import models.Cliente
 import models.Marcas
 import models.Producto
 import java.util.*
@@ -7,32 +8,40 @@ import java.util.*
 
 
 
-fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>) {
+fun consultaProductoPorNombre(productos: MutableMap<Int, Producto>, marca: MutableMap<Int,Marcas>,categorias: MutableMap<Int, Categoria>,cliente:Cliente) {
 
     cargar(productos)
-    var bandera = false
-    print("Ingrese el nombre del  producto para ver mas detalles:")
-    val nombreBuscar = readLine()!!.lowercase(Locale.getDefault())
+    cargarMarcas(marca)
+    cargarCategorias(categorias)
+    val nombreBuscar: String?
 
-    println("\n********Todos nuestros productos: ********** \n")
-    for ((key, value) in productos) {
-        if( value.nombre.lowercase(Locale.getDefault()).contains(nombreBuscar) ||
-            value.marca.lowercase(Locale.getDefault()).contains(nombreBuscar) ||
-            value.categoria.lowercase(Locale.getDefault()).contains(nombreBuscar)){
-            println("Codigo: $key")
-            println("Nombre: ${value.nombre}")
-            println("Marca: ${value.marca}")
-            println("Categoria: ${value.categoria}")
-            println("Precio: $ ${value.precio}")
-            // println("Se econtro el producto")
-            println("************************")
-            bandera =true
+        println("****************************************")
+        println("Busca el articulo que prefieras: :")
+        nombreBuscar = readLine()?.toString()//convertir a minuscula el texto que se ingrese
 
-            agregarCarrrito()
-        }
-    }
-    if(bandera == false){
-        println("No se encontro ningun producto con este nombre")
+    if (nombreBuscar != null) {
+
+        println("\n********Todos nuestros productos: ********** \n")
+        for ((key, value) in productos)
+            if( value.nombre.lowercase(Locale.getDefault()).contains("$nombreBuscar") ||
+                value.marca.lowercase(Locale.getDefault()).contains("$nombreBuscar") ||
+                value.categoria.lowercase(Locale.getDefault()).contains("$nombreBuscar")){
+
+                println("Codigo: $key")
+                println("Nombre: ${value.nombre}")
+                println("Marca: ${value.marca}")
+                println("Categoria: ${value.categoria}")
+                println("Precio: $ ${value.precio}")
+                // println("Se econtro el producto")
+                println("************************")
+
+            }
+        agregarCarrrito(cliente)
+
+
+    }else {
+        println("El campo no puede estar vacio")
+        return consultaProductoPorNombre(productos ,marca,categorias,cliente)
     }
 
 }
@@ -41,10 +50,10 @@ fun mostrarMarcas(marca: MutableMap<Int, Marcas>) {
     cargarMarcas(marca)
 
     for ((_,value) in marca)
-        println("Codigo ${value.idMarca} Categoria ${value.descripcion}")
+        println("Codigo ${value.idMarca} Marca ${value.descripcion}")
 
 }
-fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>, marca: MutableMap<Int,Marcas>){
+fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>, marca: MutableMap<Int,Marcas>,cliente:Cliente){
 
 
     cargar(productos)
@@ -59,7 +68,7 @@ fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>, marca: Mutabl
         println("************************************************************")
         println("El codigo solo puede ser de valor numerico intenta de nuevo ")
         println("************************************************************")
-        return consultaProductoPorMarca(productos,marca)
+        return consultaProductoPorMarca(productos,marca,cliente)
     }
 
 
@@ -69,7 +78,6 @@ fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>, marca: Mutabl
         //Verificamos que el campo no se deje vacio.
 
         if (nombreBuscar != null) {
-            //convertir a minuscula el texto de cada value.
 
 
 
@@ -82,12 +90,12 @@ fun consultaProductoPorMarca(productos: MutableMap<Int, Producto>, marca: Mutabl
                     println("Precio: $ ${value.precio}")
                     println("************************")
                 }
-            agregarCarrrito()
+            agregarCarrrito(cliente)
 
 
         } else {
             println("El campo no puede estar vacio")
-            return consultaProductoPorMarca(productos, marca)
+            return consultaProductoPorMarca(productos, marca,cliente)
         }
 
 }
@@ -101,7 +109,7 @@ fun mostrarCategorias(categorias: MutableMap<Int, Categoria>) {
 
 }
 
-fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>, categorias: MutableMap<Int, Categoria>){
+fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>, categorias: MutableMap<Int, Categoria>,cliente:Cliente){
 
 
     cargar(productos)
@@ -116,7 +124,7 @@ fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>, categoria
         println("************************************************************")
         println("El codigo solo puede ser de valor numerico intenta de nuevo ")
         println("************************************************************")
-        return consultaProductoPorCategoria(productos, categorias)
+        return consultaProductoPorCategoria(productos, categorias,cliente)
     }
 
 
@@ -140,27 +148,27 @@ fun consultaProductoPorCategoria(productos: MutableMap<Int, Producto>, categoria
                     println("************************")
                 }
 
-            agregarCarrrito()
+            agregarCarrrito(cliente)
 
 
         } else {
             println("El campo no puede estar vacio")
-            return consultaProductoPorCategoria(productos, categorias)
+            return consultaProductoPorCategoria(productos, categorias,cliente)
         }
 
 }
 
 
-fun listadoCompleto(productos: MutableMap<Int, Producto>, categorias: MutableMap<Int, Categoria>) {
+fun listadoCompleto(productos: MutableMap<Int, Producto>, categorias: MutableMap<Int, Categoria>,cliente: Cliente) {
 
     cargar(productos)
     cargarCategorias(categorias)
 
 
-    println("Deseas ver el listado completo de productos? si/no: ")
+    println("Deseas ver el listado completo de productos? (Escriba s/n): ")
     val respuesta = readLine()!!
     when (respuesta) {
-        "si" -> {
+        "s" -> {
             for ((key,value) in productos) {
                 println("Codigo: $key")
                 println("Nombre: ${value.nombre}")
@@ -170,15 +178,15 @@ fun listadoCompleto(productos: MutableMap<Int, Producto>, categorias: MutableMap
                 println("************************")
             }
         }
-        "no" -> {
+        "n" -> {
             println("Tenemos estas categorias para ti: ")
-
-            mostrarCategorias(categorias)
+            consultaProductoPorCategoria(productos,categorias,cliente)
         }
         else -> {
-            println("No puedo reconocer tu respuesta, Busca el producto por categoria")
+            println("Tu respuesta no fue correcta, escribe s o n:")
+            return listadoCompleto(productos,categorias,cliente)
         }
     }
-    agregarCarrrito()
+    agregarCarrrito(cliente)
 
 }

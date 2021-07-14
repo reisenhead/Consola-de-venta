@@ -12,7 +12,7 @@ class Usuario(idUsuario:Int, usuario:String,contrasenia:String) {
         println("Nombre de usuario: $usuario\n")
     }
 
-   fun getIdUsuario():Int{
+    fun getIdUsuario():Int{
         return idUsuario
     }
 
